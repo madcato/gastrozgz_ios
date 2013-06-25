@@ -40,6 +40,13 @@
 		0B02C7E21779F871004F6C4C /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B02C7E11779F871004F6C4C /* ContactViewController.m */; };
 		0B4EFD6B177A007600B6B92B /* iTunesArtwork512 in Resources */ = {isa = PBXBuildFile; fileRef = 0B4EFD69177A007600B6B92B /* iTunesArtwork512 */; };
 		0B4EFD6C177A007600B6B92B /* iTunesArtwork1024 in Resources */ = {isa = PBXBuildFile; fileRef = 0B4EFD6A177A007600B6B92B /* iTunesArtwork1024 */; };
+		0BBAF18D177A02AC0093F689 /* OSCoreDataSyncEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBAF18C177A02AC0093F689 /* OSCoreDataSyncEngine.m */; };
+		0BBAF192177A03D80093F689 /* OSDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBAF191177A03D80093F689 /* OSDatabase.m */; };
+		0BBAF195177A03F10093F689 /* NSManagedObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBAF194177A03F10093F689 /* NSManagedObject+JSON.m */; };
+		0BBAF198177A03FE0093F689 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBAF197177A03FE0093F689 /* NSData+Base64.m */; };
+		0BBAF19A177A04820093F689 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BBAF199177A04820093F689 /* MobileCoreServices.framework */; };
+		0BBAF19C177A04880093F689 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BBAF19B177A04880093F689 /* SystemConfiguration.framework */; };
+		AD2C10C22FAE4A3DA56E723E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF4DD9FE30C47F2B7BA0D46 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +94,19 @@
 		0B02C7E11779F871004F6C4C /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
 		0B4EFD69177A007600B6B92B /* iTunesArtwork512 */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork512; path = "graphic resources/icons/iTunesArtwork512"; sourceTree = "<group>"; };
 		0B4EFD6A177A007600B6B92B /* iTunesArtwork1024 */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork1024; path = "graphic resources/icons/iTunesArtwork1024"; sourceTree = "<group>"; };
+		0BBAF18B177A02AC0093F689 /* OSCoreDataSyncEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCoreDataSyncEngine.h; sourceTree = "<group>"; };
+		0BBAF18C177A02AC0093F689 /* OSCoreDataSyncEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCoreDataSyncEngine.m; sourceTree = "<group>"; };
+		0BBAF18E177A02BD0093F689 /* HTTPAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPAPIClient.h; sourceTree = "<group>"; };
+		0BBAF190177A03D80093F689 /* OSDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSDatabase.h; sourceTree = "<group>"; };
+		0BBAF191177A03D80093F689 /* OSDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSDatabase.m; sourceTree = "<group>"; };
+		0BBAF193177A03F10093F689 /* NSManagedObject+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+JSON.h"; sourceTree = "<group>"; };
+		0BBAF194177A03F10093F689 /* NSManagedObject+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+JSON.m"; sourceTree = "<group>"; };
+		0BBAF196177A03FE0093F689 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		0BBAF197177A03FE0093F689 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		0BBAF199177A04820093F689 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		0BBAF19B177A04880093F689 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		2CF4DD9FE30C47F2B7BA0D46 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE6D242D91524B19A17FCD03 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,10 +114,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BBAF19C177A04880093F689 /* SystemConfiguration.framework in Frameworks */,
+				0BBAF19A177A04820093F689 /* MobileCoreServices.framework in Frameworks */,
 				0B02C78F1779F06E004F6C4C /* UIKit.framework in Frameworks */,
 				0B02C7911779F06E004F6C4C /* Foundation.framework in Frameworks */,
 				0B02C7931779F06E004F6C4C /* CoreGraphics.framework in Frameworks */,
 				0B02C7951779F06E004F6C4C /* CoreData.framework in Frameworks */,
+				AD2C10C22FAE4A3DA56E723E /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,6 +139,7 @@
 				0B02C7961779F06E004F6C4C /* gastrozgz */,
 				0B02C78D1779F06E004F6C4C /* Frameworks */,
 				0B02C78C1779F06E004F6C4C /* Products */,
+				DE6D242D91524B19A17FCD03 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,10 +154,13 @@
 		0B02C78D1779F06E004F6C4C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0BBAF19B177A04880093F689 /* SystemConfiguration.framework */,
+				0BBAF199177A04820093F689 /* MobileCoreServices.framework */,
 				0B02C78E1779F06E004F6C4C /* UIKit.framework */,
 				0B02C7901779F06E004F6C4C /* Foundation.framework */,
 				0B02C7921779F06E004F6C4C /* CoreGraphics.framework */,
 				0B02C7941779F06E004F6C4C /* CoreData.framework */,
+				2CF4DD9FE30C47F2B7BA0D46 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -192,6 +219,8 @@
 		0B02C7D51779F80F004F6C4C /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				0BBAF18F177A03CA0093F689 /* db */,
+				0BBAF18A177A02810093F689 /* sync */,
 				0B02C7D61779F81F004F6C4C /* tabcontrollers */,
 				0B02C7BA1779F232004F6C4C /* InitialViewController.h */,
 				0B02C7BB1779F232004F6C4C /* InitialViewController.m */,
@@ -218,6 +247,29 @@
 			name = tabcontrollers;
 			sourceTree = "<group>";
 		};
+		0BBAF18A177A02810093F689 /* sync */ = {
+			isa = PBXGroup;
+			children = (
+				0BBAF18E177A02BD0093F689 /* HTTPAPIClient.h */,
+				0BBAF18B177A02AC0093F689 /* OSCoreDataSyncEngine.h */,
+				0BBAF18C177A02AC0093F689 /* OSCoreDataSyncEngine.m */,
+			);
+			name = sync;
+			sourceTree = "<group>";
+		};
+		0BBAF18F177A03CA0093F689 /* db */ = {
+			isa = PBXGroup;
+			children = (
+				0BBAF190177A03D80093F689 /* OSDatabase.h */,
+				0BBAF191177A03D80093F689 /* OSDatabase.m */,
+				0BBAF193177A03F10093F689 /* NSManagedObject+JSON.h */,
+				0BBAF194177A03F10093F689 /* NSManagedObject+JSON.m */,
+				0BBAF196177A03FE0093F689 /* NSData+Base64.h */,
+				0BBAF197177A03FE0093F689 /* NSData+Base64.m */,
+			);
+			name = db;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -225,9 +277,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0B02C7AD1779F06E004F6C4C /* Build configuration list for PBXNativeTarget "gastrozgz" */;
 			buildPhases = (
+				E49741CD69EB4CC28E45F37A /* Check Pods Manifest.lock */,
 				0B02C7871779F06E004F6C4C /* Sources */,
 				0B02C7881779F06E004F6C4C /* Frameworks */,
 				0B02C7891779F06E004F6C4C /* Resources */,
+				1CD53E945F37431B8331CA0C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -293,6 +347,37 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1CD53E945F37431B8331CA0C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+		E49741CD69EB4CC28E45F37A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0B02C7871779F06E004F6C4C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -308,6 +393,10 @@
 				0B02C7DC1779F842004F6C4C /* MapViewController.m in Sources */,
 				0B02C7DF1779F85A004F6C4C /* RestaurantsViewController.m in Sources */,
 				0B02C7E21779F871004F6C4C /* ContactViewController.m in Sources */,
+				0BBAF18D177A02AC0093F689 /* OSCoreDataSyncEngine.m in Sources */,
+				0BBAF192177A03D80093F689 /* OSDatabase.m in Sources */,
+				0BBAF195177A03F10093F689 /* NSManagedObject+JSON.m in Sources */,
+				0BBAF198177A03FE0093F689 /* NSData+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +472,7 @@
 		};
 		0B02C7AE1779F06E004F6C4C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE6D242D91524B19A17FCD03 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "gastrozgz/gastrozgz-Prefix.pch";
@@ -395,6 +485,7 @@
 		};
 		0B02C7AF1779F06E004F6C4C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE6D242D91524B19A17FCD03 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "gastrozgz/gastrozgz-Prefix.pch";
