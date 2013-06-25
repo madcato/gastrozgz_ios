@@ -8,6 +8,10 @@
 
 #import "AppDelegate.h"
 
+@interface AppDelegate ()
+
+@property (nonatomic, strong) AFHTTPClient* httpClient;
+@end
 @implementation AppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
@@ -17,6 +21,25 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self customizeAppearance];
+    self.httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString: @"http://www.apple.es/"]];
+    [self.httpClient setReachabilityStatusChangeBlock:
+     ^(AFNetworkReachabilityStatus status) {
+         switch (status) {
+             case AFNetworkReachabilityStatusUnknown:
+                 NSLog(@"Net status unknown");
+                 break;
+             case AFNetworkReachabilityStatusNotReachable:
+                 NSLog(@"Net status not reachable");
+                 break;
+             case AFNetworkReachabilityStatusReachableViaWWAN:
+             case AFNetworkReachabilityStatusReachableViaWiFi:
+                 NSLog(@"Net status reachable");
+                 break;
+             default:
+                 break;
+         }
+
+    }];
     return YES;
 }
 
