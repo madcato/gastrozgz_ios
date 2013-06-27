@@ -10,4 +10,6 @@
 
 @interface SplashViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIView *watingView;
+
 @end

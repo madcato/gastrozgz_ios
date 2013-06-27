@@ -40,6 +40,7 @@
 		0B02C7E21779F871004F6C4C /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B02C7E11779F871004F6C4C /* ContactViewController.m */; };
 		0B4EFD6B177A007600B6B92B /* iTunesArtwork512 in Resources */ = {isa = PBXBuildFile; fileRef = 0B4EFD69177A007600B6B92B /* iTunesArtwork512 */; };
 		0B4EFD6C177A007600B6B92B /* iTunesArtwork1024 in Resources */ = {isa = PBXBuildFile; fileRef = 0B4EFD6A177A007600B6B92B /* iTunesArtwork1024 */; };
+		0B67519A177C3BE1009C5F49 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B675199177C3BE1009C5F49 /* QuartzCore.framework */; };
 		0BBAF18D177A02AC0093F689 /* OSCoreDataSyncEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBAF18C177A02AC0093F689 /* OSCoreDataSyncEngine.m */; };
 		0BBAF192177A03D80093F689 /* OSDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBAF191177A03D80093F689 /* OSDatabase.m */; };
 		0BBAF195177A03F10093F689 /* NSManagedObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBAF194177A03F10093F689 /* NSManagedObject+JSON.m */; };
@@ -94,6 +95,7 @@
 		0B02C7E11779F871004F6C4C /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
 		0B4EFD69177A007600B6B92B /* iTunesArtwork512 */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork512; path = "graphic resources/icons/iTunesArtwork512"; sourceTree = "<group>"; };
 		0B4EFD6A177A007600B6B92B /* iTunesArtwork1024 */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork1024; path = "graphic resources/icons/iTunesArtwork1024"; sourceTree = "<group>"; };
+		0B675199177C3BE1009C5F49 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0BBAF18B177A02AC0093F689 /* OSCoreDataSyncEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCoreDataSyncEngine.h; sourceTree = "<group>"; };
 		0BBAF18C177A02AC0093F689 /* OSCoreDataSyncEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCoreDataSyncEngine.m; sourceTree = "<group>"; };
 		0BBAF18E177A02BD0093F689 /* HTTPAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPAPIClient.h; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B67519A177C3BE1009C5F49 /* QuartzCore.framework in Frameworks */,
 				0BBAF19C177A04880093F689 /* SystemConfiguration.framework in Frameworks */,
 				0BBAF19A177A04820093F689 /* MobileCoreServices.framework in Frameworks */,
 				0B02C78F1779F06E004F6C4C /* UIKit.framework in Frameworks */,
@@ -154,6 +157,7 @@
 		0B02C78D1779F06E004F6C4C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0B675199177C3BE1009C5F49 /* QuartzCore.framework */,
 				0BBAF19B177A04880093F689 /* SystemConfiguration.framework */,
 				0BBAF199177A04820093F689 /* MobileCoreServices.framework */,
 				0B02C78E1779F06E004F6C4C /* UIKit.framework */,

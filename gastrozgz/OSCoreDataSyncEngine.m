@@ -191,6 +191,43 @@ NSString * const kOSCoreDataSyncEngineSyncCompletedNotificationName = @"OSCoreDa
     return results;
 }
 
+- (void)downloadDataForRegisteredObjects:(BOOL)useUpdatedAtDate toDeleteLocalRecords:(BOOL)toDelete {
+    NSMutableArray *operations = [NSMutableArray array];
+    
+    for (NSString *className in self.registeredClassesToSync) {
+        NSDate *mostRecentUpdatedDate = nil;
+        if (useUpdatedAtDate) {
+            mostRecentUpdatedDate = [self mostRecentUpdatedAtDateForEntityWithName:className];
+        }
+        NSMutableURLRequest *request = [self.registeredAPIClient
+                                        GETRequestForAllRecordsOfClass:className
+                                        updatedAfterDate:mostRecentUpdatedDate];
+        AFHTTPRequestOperation *operation = [self.registeredAPIClient HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            if ([responseObject isKindOfClass:[NSArray class]]) {
+                NSLog(@"Response for %@: %@", className, responseObject);
+                // Need to write JSON files to disk
+                [self writeJSONResponse:responseObject toDiskForClassWithName:className];
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Request for class %@ failed with error: %@", className, error);
+        }];
+        
+        [operations addObject:operation];
+    }
+    
+    [self.registeredAPIClient enqueueBatchOfHTTPRequestOperations:operations progressBlock:^(NSUInteger numberOfCompletedOperations, NSUInteger totalNumberOfOperations) {
+        
+    } completionBlock:^(NSArray *operations) {
+        NSLog(@"All operations completed");
+        // Need to process JSON records into Core Data
+        if (!toDelete) {
+            [self processJSONDataRecordsIntoCoreData];
+        } else {
+            [self processJSONDataRecordsForDeletion];
+        }
+    }];
+}
+
 - (void)processJSONDataRecordsIntoCoreData {
     NSManagedObjectContext *managedObjectContext = [[OSDatabase backgroundDatabase] managedObjectContext];
     //
@@ -318,162 +355,7 @@ NSString * const kOSCoreDataSyncEngineSyncCompletedNotificationName = @"OSCoreDa
     //
     // Execute the sync completion operations as this is now the final step of the sync process
     //
-    [self postLocalObjectsToServer];
-}
-
-- (void)postLocalObjectsToServer {
-    NSMutableArray *operations = [NSMutableArray array];
-    //
-    // Iterate over all register classes to sync
-    //
-    for (NSString *className in self.registeredClassesToSync) {
-        //
-        // Fetch all objects from Core Data whose syncStatus is equal to SDObjectCreated
-        //
-        NSArray *objectsToCreate = [self managedObjectsForClass:className withSyncStatus:OSObjectCreated];
-        //
-        // Iterate over all fetched objects who syncStatus is equal to SDObjectCreated
-        //
-        for (NSManagedObject *objectToCreate in objectsToCreate) {
-            //
-            // Get the JSON representation of the NSManagedObject
-            //
-            NSDictionary *jsonString = [objectToCreate JSONToCreateObjectOnServer];
-            //
-            // Create a request using your POST method with the JSON representation of the NSManagedObject
-            //
-            NSMutableURLRequest *request = [self.registeredAPIClient POSTRequestForClass:className parameters:jsonString];
-
-            AFHTTPRequestOperation *operation = [self.registeredAPIClient HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                //
-                // Set the completion block for the operation to update the NSManagedObject with the createdDate from the
-                // remote service and objectId, then set the syncStatus to SDObjectSynced so that the sync engine does not
-                // attempt to create it again
-                //
-                NSLog(@"Success creation: %@", responseObject);
-                NSDictionary *responseDictionary = responseObject;
-                NSDate *createdDate = [self dateUsingStringFromAPI:[responseDictionary valueForKey:@"created_at"]];
-                [objectToCreate setValue:createdDate forKey:@"created_at"];
-                [objectToCreate setValue:[responseDictionary valueForKey:@"objectId"] forKey:@"objectId"];
-                [objectToCreate setValue:[NSNumber numberWithInt:OSObjectSynced] forKey:@"syncStatus"];
-            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                //
-                // Log an error if there was one, proper error handling should be done if necessary, in this case it may not
-                // be required to do anything as the object will attempt to sync again next time. There could be a possibility
-                // that the data was malformed, fields were missing, extra fields were present etc... so it is a good idea to
-                // determine the best error handling approach for your production applications.
-                //
-                NSLog(@"Failed creation: %@", error);
-            }];
-            //
-            // Add all operations to the operations NSArray
-            //
-            [operations addObject:operation];
-        }
-    }
-
-    //
-    // Pass off operations array to the sharedClient so that they are all executed
-    //
-    [self.registeredAPIClient enqueueBatchOfHTTPRequestOperations:operations progressBlock:^(NSUInteger numberOfCompletedOperations, NSUInteger totalNumberOfOperations) {
-        NSLog(@"Completed %d of %d create operations", numberOfCompletedOperations, totalNumberOfOperations);
-    } completionBlock:^(NSArray *operations) {
-        if ([operations count] > 0) {
-            NSLog(@"Creation of objects on server compelete, updated objects in context: %@", [[[OSDatabase backgroundDatabase] managedObjectContext] updatedObjects]);
-            [[OSDatabase backgroundDatabase] save];
-            NSLog(@"SBC After call creation");
-        }
-
-        [self deleteObjectsOnServer];
-    }];
-}
-
-- (void)deleteObjectsOnServer {
-    NSMutableArray *operations = [NSMutableArray array];
-    //
-    // Iterate over all registered classes to sync
-    //
-    for (NSString *className in self.registeredClassesToSync) {
-        //
-        // Fetch all records from Core Data whose syncStatus is equal to SDObjectDeleted
-        //
-        NSArray *objectsToDelete = [self managedObjectsForClass:className withSyncStatus:OSObjectDeleted];
-        //
-        // Iterate over all fetched records from Core Data
-        //
-        for (NSManagedObject *objectToDelete in objectsToDelete) {
-            //
-            // Create a request for each record
-            //
-            NSMutableURLRequest *request = [self.registeredAPIClient
-                                            DELETERequestForClass:className
-                                            forObjectWithId:[objectToDelete valueForKey:@"objectId"]];
-
-            AFHTTPRequestOperation *operation = [self.registeredAPIClient HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                NSLog(@"Success deletion: %@", responseObject);
-                //
-                // In the operations completion block delete the NSManagedObject from Core data locally since it has been
-                // deleted on the server
-                //
-                [[[OSDatabase backgroundDatabase] managedObjectContext] deleteObject:objectToDelete];
-            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                NSLog(@"Failed to delete: %@", error);
-            }];
-
-            //
-            // Add each operation to the operations array
-            //
-            [operations addObject:operation];
-        }
-    }
-
-    [self.registeredAPIClient enqueueBatchOfHTTPRequestOperations:operations progressBlock:^(NSUInteger numberOfCompletedOperations, NSUInteger totalNumberOfOperations) {
-
-    } completionBlock:^(NSArray *operations) {
-        if ([operations count] > 0) {
-            NSLog(@"Deletion of objects on server compelete, updated objects in context: %@", [[[OSDatabase backgroundDatabase] managedObjectContext] updatedObjects]);
-        }
-
-        [self executeSyncCompletedOperations];
-
-    }];
-}
-
-- (void)downloadDataForRegisteredObjects:(BOOL)useUpdatedAtDate toDeleteLocalRecords:(BOOL)toDelete {
-    NSMutableArray *operations = [NSMutableArray array];
-
-    for (NSString *className in self.registeredClassesToSync) {
-        NSDate *mostRecentUpdatedDate = nil;
-        if (useUpdatedAtDate) {
-            mostRecentUpdatedDate = [self mostRecentUpdatedAtDateForEntityWithName:className];
-        }
-        NSMutableURLRequest *request = [self.registeredAPIClient
-                                        GETRequestForAllRecordsOfClass:className
-                                        updatedAfterDate:mostRecentUpdatedDate];
-        AFHTTPRequestOperation *operation = [self.registeredAPIClient HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            if ([responseObject isKindOfClass:[NSArray class]]) {
-                NSLog(@"Response for %@: %@", className, responseObject);
-                // Need to write JSON files to disk
-                [self writeJSONResponse:responseObject toDiskForClassWithName:className];
-            }
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"Request for class %@ failed with error: %@", className, error);
-        }];
-
-        [operations addObject:operation];
-    }
-
-    [self.registeredAPIClient enqueueBatchOfHTTPRequestOperations:operations progressBlock:^(NSUInteger numberOfCompletedOperations, NSUInteger totalNumberOfOperations) {
-
-    } completionBlock:^(NSArray *operations) {
-        NSLog(@"All operations completed");
-        // Need to process JSON records into Core Data
-        if (!toDelete) {
-            [self processJSONDataRecordsIntoCoreData];
-        } else {
-            [self processJSONDataRecordsForDeletion];
-        }
-    }];
+    [self executeSyncCompletedOperations];
 }
 
 - (void)startSync {

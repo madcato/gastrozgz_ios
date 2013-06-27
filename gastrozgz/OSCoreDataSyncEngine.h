@@ -64,7 +64,8 @@ NSString * const kOSCoreDataSyncEngineSyncCompletedNotificationName;
 - (NSString *)dateStringForAPIUsingDate:(NSDate *)date;
 - (NSDate *)dateUsingStringFromAPI:(NSString *)dateString;
 + (void)deleteObject:(NSManagedObject*)object inContext:(NSManagedObjectContext *)context;
-    
+- (BOOL)initialSyncComplete;
+
 @property (atomic, readonly) BOOL syncInProgress;
 
 @end
