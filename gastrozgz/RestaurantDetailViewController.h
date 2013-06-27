@@ -10,4 +10,13 @@
 
 @interface RestaurantDetailViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *imageLabel;
+@property (weak, nonatomic) IBOutlet UIButton *viewMoreButton;
+@property (weak, nonatomic) IBOutlet UITextView *descriptionText;
+@property (weak, nonatomic) IBOutlet MKMapView *locationMap;
+
+
+- (IBAction)actionPressed:(id)sender;
+- (IBAction)viewMorePressed:(id)sender;
 @end

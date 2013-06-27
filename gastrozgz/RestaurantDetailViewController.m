@@ -35,4 +35,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidUnload {
+    [self setTitleLabel:nil];
+    [self setImageLabel:nil];
+    [self setViewMoreButton:nil];
+    [self setDescriptionText:nil];
+    [self setLocationMap:nil];
+    [super viewDidUnload];
+}
+- (IBAction)actionPressed:(id)sender {
+}
+
+- (IBAction)viewMorePressed:(id)sender {
+}
 @end
