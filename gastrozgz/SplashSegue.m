@@ -18,11 +18,13 @@
                         toView:toView duration:2.0
                        options:UIViewAnimationOptionCurveEaseInOut |
                                UIViewAnimationOptionTransitionCrossDissolve
-                    completion:NULL];
+                    completion:^(BOOL finished) {
+                        AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication]
+                                                                  delegate];
+                        appDelegate.window.rootViewController = self.destinationViewController;
+                        
+                    }];
     
-    AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication]
-                                               delegate];
-    appDelegate.window.rootViewController = self.destinationViewController;
 }
 
 @end

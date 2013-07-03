@@ -49,6 +49,7 @@
 		0BBAF198177A03FE0093F689 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBAF197177A03FE0093F689 /* NSData+Base64.m */; };
 		0BBAF19A177A04820093F689 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BBAF199177A04820093F689 /* MobileCoreServices.framework */; };
 		0BBAF19C177A04880093F689 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BBAF19B177A04880093F689 /* SystemConfiguration.framework */; };
+		0BF06D5C1784BA370078265C /* splash.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06D5B1784BA370078265C /* splash.jpg */; };
 		AD2C10C22FAE4A3DA56E723E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF4DD9FE30C47F2B7BA0D46 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -112,6 +113,7 @@
 		0BBAF197177A03FE0093F689 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		0BBAF199177A04820093F689 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		0BBAF19B177A04880093F689 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		0BF06D5B1784BA370078265C /* splash.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = splash.jpg; sourceTree = "<group>"; };
 		2CF4DD9FE30C47F2B7BA0D46 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE6D242D91524B19A17FCD03 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -206,6 +208,7 @@
 		0B02C7C31779F77D004F6C4C /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				0BF06D5B1784BA370078265C /* splash.jpg */,
 				0B02C7B01779F08E004F6C4C /* gastrozgz.storyboard */,
 				0B02C7C41779F784004F6C4C /* tabicons */,
 			);
@@ -355,6 +358,7 @@
 				0B02C7D41779F792004F6C4C /* 111-user@2x.png in Resources */,
 				0B4EFD6B177A007600B6B92B /* iTunesArtwork512 in Resources */,
 				0B4EFD6C177A007600B6B92B /* iTunesArtwork1024 in Resources */,
+				0BF06D5C1784BA370078265C /* splash.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

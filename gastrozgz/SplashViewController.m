@@ -25,9 +25,14 @@
 }
 
 - (void)initWaitingView {
-    self.watingView.hidden = YES;
     self.watingView.layer.cornerRadius = 20;
-    self.watingView.layer.opacity = 0.0;
+    self.watingView.alpha = 0.0;
+    [self.watingView setOpaque:NO];
+    [self.view addSubview:self.watingView];
+    CGRect frame = self.watingView.frame;
+    frame.origin.x = 30;
+    frame.origin.y = 186;
+    self.watingView.frame = frame;
 }
 
 - (void)viewDidLoad
@@ -44,6 +49,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
     if ([[OSCoreDataSyncEngine sharedEngine] initialSyncComplete] == YES) {
         [self navigateToNextController];
     } else {
@@ -54,20 +60,21 @@
                                                      name:kOSCoreDataSyncEngineSyncCompletedNotificationName
                                                    object:nil];
         [self showWaitPleaseView];
-    }    
+    }
     // FIXME: Testing only. REMOVE
     [self performSelector:@selector(initialSyncFinished) withObject:nil afterDelay:4];
 }
 
 - (void)initialSyncFinished {
     self.watingView.hidden = YES;
+    [self.watingView removeFromSuperview];
     [self navigateToNextController];
 }
 
 - (void)showWaitPleaseView {
-    [UIView animateWithDuration:0.4 animations:^(void) {
-        self.watingView.hidden = NO;
-        self.watingView.layer.opacity = 0.9;
+
+    [UIView animateWithDuration:0.4f animations:^(void){
+        [self.watingView setAlpha:0.8];
     }];
 }
 
@@ -79,6 +86,7 @@
 
 - (void)viewDidUnload {
     [self setWatingView:nil];
+    [self setImage:nil];
         [super viewDidUnload];
 }
 @end
