@@ -88,13 +88,6 @@
                     <view key="view" contentMode="scaleToFill" id="Bhh-iD-1XI">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" id="yLr-9H-27e">
-                                <rect key="frame" x="20" y="64" width="280" height="327"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Ofertas" id="tiq-Wb-JlJ"/>
@@ -102,6 +95,31 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rY4-7M-K4n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2199" y="-998"/>
+        </scene>
+        <!--Banner View Controller-->
+        <scene sceneID="Lzk-M2-hqx">
+            <objects>
+                <viewController storyboardIdentifier="BannerView" id="Dld-Jv-FjK" customClass="BannerViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bkx-3D-EOz">
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView contentMode="scaleToFill" id="hv1-IE-dyQ">
+                                <rect key="frame" x="20" y="64" width="280" height="327"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="image" destination="hv1-IE-dyQ" id="Oks-4E-MCR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t3j-hj-0Mu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2576" y="-998"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="o27-x9-7p3">

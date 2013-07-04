@@ -42,6 +42,7 @@
 		0B4EFD6C177A007600B6B92B /* iTunesArtwork1024 in Resources */ = {isa = PBXBuildFile; fileRef = 0B4EFD6A177A007600B6B92B /* iTunesArtwork1024 */; };
 		0B67519A177C3BE1009C5F49 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B675199177C3BE1009C5F49 /* QuartzCore.framework */; };
 		0B67519D177C4207009C5F49 /* RestaurantDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B67519C177C4207009C5F49 /* RestaurantDetailViewController.m */; };
+		0B6BD07617857DF8006BF0C8 /* BannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6BD07517857DF7006BF0C8 /* BannerViewController.m */; };
 		0BA4D5BC177CA6E20091146C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BA4D5BB177CA6E20091146C /* MapKit.framework */; };
 		0BBAF18D177A02AC0093F689 /* OSCoreDataSyncEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBAF18C177A02AC0093F689 /* OSCoreDataSyncEngine.m */; };
 		0BBAF192177A03D80093F689 /* OSDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBAF191177A03D80093F689 /* OSDatabase.m */; };
@@ -101,6 +102,8 @@
 		0B675199177C3BE1009C5F49 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0B67519B177C4207009C5F49 /* RestaurantDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantDetailViewController.h; sourceTree = "<group>"; };
 		0B67519C177C4207009C5F49 /* RestaurantDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantDetailViewController.m; sourceTree = "<group>"; };
+		0B6BD07417857DF7006BF0C8 /* BannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerViewController.h; sourceTree = "<group>"; };
+		0B6BD07517857DF7006BF0C8 /* BannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerViewController.m; sourceTree = "<group>"; };
 		0BA4D5BB177CA6E20091146C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		0BBAF18B177A02AC0093F689 /* OSCoreDataSyncEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCoreDataSyncEngine.h; sourceTree = "<group>"; };
 		0BBAF18C177A02AC0093F689 /* OSCoreDataSyncEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCoreDataSyncEngine.m; sourceTree = "<group>"; };
@@ -244,6 +247,8 @@
 				0B02C7C11779F2E2004F6C4C /* SplashSegue.m */,
 				0B67519B177C4207009C5F49 /* RestaurantDetailViewController.h */,
 				0B67519C177C4207009C5F49 /* RestaurantDetailViewController.m */,
+				0B6BD07417857DF7006BF0C8 /* BannerViewController.h */,
+				0B6BD07517857DF7006BF0C8 /* BannerViewController.m */,
 			);
 			name = classes;
 			sourceTree = "<group>";
@@ -415,6 +420,7 @@
 				0BBAF195177A03F10093F689 /* NSManagedObject+JSON.m in Sources */,
 				0BBAF198177A03FE0093F689 /* NSData+Base64.m in Sources */,
 				0B67519D177C4207009C5F49 /* RestaurantDetailViewController.m in Sources */,
+				0B6BD07617857DF8006BF0C8 /* BannerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
