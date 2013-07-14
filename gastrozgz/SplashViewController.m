@@ -74,7 +74,7 @@
 - (void)showWaitPleaseView {
 
     [UIView animateWithDuration:0.4f animations:^(void){
-        [self.watingView setAlpha:0.8];
+        [self.watingView setAlpha:0.9];
     }];
 }
 

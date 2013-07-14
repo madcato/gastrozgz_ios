@@ -46,6 +46,11 @@
 		0BA4D5BC177CA6E20091146C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BA4D5BB177CA6E20091146C /* MapKit.framework */; };
 		0BAFB9C01792CEE9003F0419 /* stations_bizi.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BAFB9BF1792CEE9003F0419 /* stations_bizi.plist */; };
 		0BAFB9C31792D299003F0419 /* copa.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BAFB9C21792D299003F0419 /* copa.png */; };
+		0BAFB9C6179301EF003F0419 /* RestaurantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAFB9C5179301EF003F0419 /* RestaurantCell.m */; };
+		0BAFB9CD17930B97003F0419 /* copa_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BAFB9CC17930B97003F0419 /* copa_placeholder.png */; };
+		0BAFB9CF179310EE003F0419 /* cellaccessory.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BAFB9CE179310EE003F0419 /* cellaccessory.png */; };
+		0BAFB9D11793130D003F0419 /* nav_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BAFB9D01793130D003F0419 /* nav_background.png */; };
+		0BAFB9D317933D99003F0419 /* purple_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BAFB9D217933D99003F0419 /* purple_button.png */; };
 		0BBAF18D177A02AC0093F689 /* OSCoreDataSyncEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBAF18C177A02AC0093F689 /* OSCoreDataSyncEngine.m */; };
 		0BBAF192177A03D80093F689 /* OSDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBAF191177A03D80093F689 /* OSDatabase.m */; };
 		0BBAF195177A03F10093F689 /* NSManagedObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBAF194177A03F10093F689 /* NSManagedObject+JSON.m */; };
@@ -109,6 +114,12 @@
 		0BA4D5BB177CA6E20091146C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		0BAFB9BF1792CEE9003F0419 /* stations_bizi.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = stations_bizi.plist; sourceTree = "<group>"; };
 		0BAFB9C21792D299003F0419 /* copa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = copa.png; sourceTree = "<group>"; };
+		0BAFB9C4179301EF003F0419 /* RestaurantCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantCell.h; sourceTree = "<group>"; };
+		0BAFB9C5179301EF003F0419 /* RestaurantCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantCell.m; sourceTree = "<group>"; };
+		0BAFB9CC17930B97003F0419 /* copa_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = copa_placeholder.png; sourceTree = "<group>"; };
+		0BAFB9CE179310EE003F0419 /* cellaccessory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cellaccessory.png; sourceTree = "<group>"; };
+		0BAFB9D01793130D003F0419 /* nav_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_background.png; sourceTree = "<group>"; };
+		0BAFB9D217933D99003F0419 /* purple_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purple_button.png; sourceTree = "<group>"; };
 		0BBAF18B177A02AC0093F689 /* OSCoreDataSyncEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCoreDataSyncEngine.h; sourceTree = "<group>"; };
 		0BBAF18C177A02AC0093F689 /* OSCoreDataSyncEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCoreDataSyncEngine.m; sourceTree = "<group>"; };
 		0BBAF18E177A02BD0093F689 /* HTTPAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPAPIClient.h; sourceTree = "<group>"; };
@@ -148,7 +159,6 @@
 		0B02C7821779F06E004F6C4C = {
 			isa = PBXGroup;
 			children = (
-				0BA4D5BB177CA6E20091146C /* MapKit.framework */,
 				0B02C7B61779F1C9004F6C4C /* Icon-Small.png */,
 				0B02C7B71779F1C9004F6C4C /* Icon-Small@2x.png */,
 				0B02C7B41779F1BD004F6C4C /* Icon@2x.png */,
@@ -173,6 +183,7 @@
 		0B02C78D1779F06E004F6C4C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0BA4D5BB177CA6E20091146C /* MapKit.framework */,
 				0B675199177C3BE1009C5F49 /* QuartzCore.framework */,
 				0BBAF19B177A04880093F689 /* SystemConfiguration.framework */,
 				0BBAF199177A04820093F689 /* MobileCoreServices.framework */,
@@ -242,19 +253,16 @@
 		0B02C7D51779F80F004F6C4C /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				0BAFB9C7179301FC003F0419 /* initial controllers */,
 				0BBAF18F177A03CA0093F689 /* db */,
 				0BBAF18A177A02810093F689 /* sync */,
 				0B02C7D61779F81F004F6C4C /* tabcontrollers */,
-				0B02C7BA1779F232004F6C4C /* InitialViewController.h */,
-				0B02C7BB1779F232004F6C4C /* InitialViewController.m */,
-				0B02C7BD1779F23A004F6C4C /* SplashViewController.h */,
-				0B02C7BE1779F23A004F6C4C /* SplashViewController.m */,
-				0B02C7C01779F2E2004F6C4C /* SplashSegue.h */,
-				0B02C7C11779F2E2004F6C4C /* SplashSegue.m */,
 				0B67519B177C4207009C5F49 /* RestaurantDetailViewController.h */,
 				0B67519C177C4207009C5F49 /* RestaurantDetailViewController.m */,
 				0B6BD07417857DF7006BF0C8 /* BannerViewController.h */,
 				0B6BD07517857DF7006BF0C8 /* BannerViewController.m */,
+				0BAFB9C4179301EF003F0419 /* RestaurantCell.h */,
+				0BAFB9C5179301EF003F0419 /* RestaurantCell.m */,
 			);
 			name = classes;
 			sourceTree = "<group>";
@@ -277,9 +285,26 @@
 		0BAFB9C11792D21C003F0419 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				0BAFB9D217933D99003F0419 /* purple_button.png */,
+				0BAFB9CE179310EE003F0419 /* cellaccessory.png */,
+				0BAFB9CC17930B97003F0419 /* copa_placeholder.png */,
 				0BAFB9C21792D299003F0419 /* copa.png */,
+				0BAFB9D01793130D003F0419 /* nav_background.png */,
 			);
 			name = images;
+			sourceTree = "<group>";
+		};
+		0BAFB9C7179301FC003F0419 /* initial controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0B02C7BA1779F232004F6C4C /* InitialViewController.h */,
+				0B02C7BB1779F232004F6C4C /* InitialViewController.m */,
+				0B02C7BD1779F23A004F6C4C /* SplashViewController.h */,
+				0B02C7BE1779F23A004F6C4C /* SplashViewController.m */,
+				0B02C7C01779F2E2004F6C4C /* SplashSegue.h */,
+				0B02C7C11779F2E2004F6C4C /* SplashSegue.m */,
+			);
+			name = "initial controllers";
 			sourceTree = "<group>";
 		};
 		0BBAF18A177A02810093F689 /* sync */ = {
@@ -380,6 +405,10 @@
 				0BF06D5C1784BA370078265C /* splash.jpg in Resources */,
 				0BAFB9C01792CEE9003F0419 /* stations_bizi.plist in Resources */,
 				0BAFB9C31792D299003F0419 /* copa.png in Resources */,
+				0BAFB9CD17930B97003F0419 /* copa_placeholder.png in Resources */,
+				0BAFB9CF179310EE003F0419 /* cellaccessory.png in Resources */,
+				0BAFB9D11793130D003F0419 /* nav_background.png in Resources */,
+				0BAFB9D317933D99003F0419 /* purple_button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +466,7 @@
 				0BBAF198177A03FE0093F689 /* NSData+Base64.m in Sources */,
 				0B67519D177C4207009C5F49 /* RestaurantDetailViewController.m in Sources */,
 				0B6BD07617857DF8006BF0C8 /* BannerViewController.m in Sources */,
+				0BAFB9C6179301EF003F0419 /* RestaurantCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -72,11 +72,14 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView
             viewForAnnotation:(id < MKAnnotation >)annotation {
+    if ([annotation isKindOfClass:[MKUserLocation class]]) {
+        return nil;
+    }
     MKAnnotationView* view = [[MKAnnotationView alloc]
                               initWithAnnotation:annotation
                                  reuseIdentifier:@"restaurantID"];
     view.image = [UIImage imageNamed:@"copa"];
-    view.centerOffset = CGPointMake(0, -25);
+    view.centerOffset = CGPointMake(0, -15);
     view.canShowCallout = YES;
     view.rightCalloutAccessoryView = [UIButton buttonWithType:
                                       UIButtonTypeDetailDisclosure];

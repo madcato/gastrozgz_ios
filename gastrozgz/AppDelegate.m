@@ -89,5 +89,8 @@
     
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor purpleColor]];
     [[UITabBar appearance] setTintColor:[UIColor blackColor]];
+    
+    UIImage* background = [[UIImage imageNamed:@"nav_background"] resizableImageWithCapInsets:UIEdgeInsetsMake(0,1,0,1)];
+    [[UINavigationBar appearance] setBackgroundImage:background forBarMetrics:UIBarMetricsDefault];
 }
 @end
