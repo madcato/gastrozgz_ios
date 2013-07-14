@@ -62,7 +62,7 @@
         [self showWaitPleaseView];
     }
     // FIXME: Testing only. REMOVE
-    [self performSelector:@selector(initialSyncFinished) withObject:nil afterDelay:4];
+    [self performSelector:@selector(initialSyncFinished) withObject:nil afterDelay:1];
 }
 
 - (void)initialSyncFinished {

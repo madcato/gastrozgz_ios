@@ -73,9 +73,21 @@
                     <view key="view" contentMode="scaleToFill" id="uyi-dH-2MN">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="HqR-rP-aId">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="yls-Cu-36r" id="MUo-Wp-cyt"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Mapa" id="bda-Me-yBw"/>
+                    <connections>
+                        <outlet property="mapView" destination="HqR-rP-aId" id="nzS-Qe-4ls"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vNN-32-XZ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

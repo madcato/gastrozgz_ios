@@ -57,12 +57,9 @@
 }
 
 - (BannerViewController *)viewControllerAtIndex:(NSUInteger)index {
-    
     BannerViewController *childViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BannerView"];
     childViewController.index = index;
-    
     return childViewController;
-    
 }
 
 #pragma mark - Page control data source

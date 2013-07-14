@@ -79,11 +79,12 @@
 
 - (void)customizeAppearance {
     [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
-    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTintColor:[UIColor blackColor]];
+    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTintColor:[UIColor purpleColor]];
 
     [[UINavigationBar appearance] setTitleTextAttributes:
-                         @{UITextAttributeTextColor:[UIColor purpleColor],
-                    UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(0, 0)]}
+                         @{UITextAttributeTextColor:[UIColor whiteColor],
+                          UITextAttributeTextShadowColor:[UIColor darkGrayColor],
+                    UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(0, 0.8)]}
      ];
     
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor purpleColor]];

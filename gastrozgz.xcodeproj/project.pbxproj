@@ -44,6 +44,8 @@
 		0B67519D177C4207009C5F49 /* RestaurantDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B67519C177C4207009C5F49 /* RestaurantDetailViewController.m */; };
 		0B6BD07617857DF8006BF0C8 /* BannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6BD07517857DF7006BF0C8 /* BannerViewController.m */; };
 		0BA4D5BC177CA6E20091146C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BA4D5BB177CA6E20091146C /* MapKit.framework */; };
+		0BAFB9C01792CEE9003F0419 /* stations_bizi.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BAFB9BF1792CEE9003F0419 /* stations_bizi.plist */; };
+		0BAFB9C31792D299003F0419 /* copa.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BAFB9C21792D299003F0419 /* copa.png */; };
 		0BBAF18D177A02AC0093F689 /* OSCoreDataSyncEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBAF18C177A02AC0093F689 /* OSCoreDataSyncEngine.m */; };
 		0BBAF192177A03D80093F689 /* OSDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBAF191177A03D80093F689 /* OSDatabase.m */; };
 		0BBAF195177A03F10093F689 /* NSManagedObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBAF194177A03F10093F689 /* NSManagedObject+JSON.m */; };
@@ -105,6 +107,8 @@
 		0B6BD07417857DF7006BF0C8 /* BannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerViewController.h; sourceTree = "<group>"; };
 		0B6BD07517857DF7006BF0C8 /* BannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerViewController.m; sourceTree = "<group>"; };
 		0BA4D5BB177CA6E20091146C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		0BAFB9BF1792CEE9003F0419 /* stations_bizi.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = stations_bizi.plist; sourceTree = "<group>"; };
+		0BAFB9C21792D299003F0419 /* copa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = copa.png; sourceTree = "<group>"; };
 		0BBAF18B177A02AC0093F689 /* OSCoreDataSyncEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCoreDataSyncEngine.h; sourceTree = "<group>"; };
 		0BBAF18C177A02AC0093F689 /* OSCoreDataSyncEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCoreDataSyncEngine.m; sourceTree = "<group>"; };
 		0BBAF18E177A02BD0093F689 /* HTTPAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPAPIClient.h; sourceTree = "<group>"; };
@@ -184,6 +188,7 @@
 		0B02C7961779F06E004F6C4C /* gastrozgz */ = {
 			isa = PBXGroup;
 			children = (
+				0BAFB9BF1792CEE9003F0419 /* stations_bizi.plist */,
 				0B02C7D51779F80F004F6C4C /* classes */,
 				0B02C7C31779F77D004F6C4C /* resources */,
 				0B02C79F1779F06E004F6C4C /* AppDelegate.h */,
@@ -211,6 +216,7 @@
 		0B02C7C31779F77D004F6C4C /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				0BAFB9C11792D21C003F0419 /* images */,
 				0BF06D5B1784BA370078265C /* splash.jpg */,
 				0B02C7B01779F08E004F6C4C /* gastrozgz.storyboard */,
 				0B02C7C41779F784004F6C4C /* tabicons */,
@@ -266,6 +272,14 @@
 				0B02C7E11779F871004F6C4C /* ContactViewController.m */,
 			);
 			name = tabcontrollers;
+			sourceTree = "<group>";
+		};
+		0BAFB9C11792D21C003F0419 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				0BAFB9C21792D299003F0419 /* copa.png */,
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 		0BBAF18A177A02810093F689 /* sync */ = {
@@ -364,6 +378,8 @@
 				0B4EFD6B177A007600B6B92B /* iTunesArtwork512 in Resources */,
 				0B4EFD6C177A007600B6B92B /* iTunesArtwork1024 in Resources */,
 				0BF06D5C1784BA370078265C /* splash.jpg in Resources */,
+				0BAFB9C01792CEE9003F0419 /* stations_bizi.plist in Resources */,
+				0BAFB9C31792D299003F0419 /* copa.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
