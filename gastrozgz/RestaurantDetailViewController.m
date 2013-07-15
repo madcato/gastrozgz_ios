@@ -7,8 +7,11 @@
 //
 
 #import "RestaurantDetailViewController.h"
+#import "AppDelegate.h"
 
 @interface RestaurantDetailViewController ()
+
+@property (nonatomic, strong) NSMutableArray* photos;
 
 @end
 
@@ -52,6 +55,12 @@
     [self.viewMoreButton setBackgroundImage:image forState:UIControlStateNormal];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    AppDelegate* delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    UINavigationController* navController = (UINavigationController*)delegate.window.rootViewController;
+    navController.navigationBarHidden = YES;
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -71,6 +80,7 @@
 }
 
 - (IBAction)viewMorePressed:(id)sender {
+    [self showGallery:nil];
 }
 
 #pragma mark Map View delegate
@@ -87,6 +97,49 @@
     view.centerOffset = CGPointMake(0, -15);
     view.canShowCallout = YES;
     return view;
+}
+
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationPortrait;
+}
+
+#pragma mark Image gallery
+
+- (void)showGallery:(NSString*)resourceName {
+    // Create array of `MWPhoto` objects
+    self.photos = [NSMutableArray array];
+    NSArray* files = @[@"http://livedesignonline.com/site-files/livedesignonline.com/files/archive/blog.livedesignonline.com/briefingroom/wp-content/uploads/2010/05/restaurant-t-buenos-aires.jpg",@"http://cdn5.business-opportunities.biz/wp-content/uploads/2013/01/restaurant.jpg"];
+    
+    for (NSString* path in files) {
+        [self.photos addObject:[MWPhoto photoWithURL:[NSURL URLWithString:path]]];
+    }
+    
+    // Create & present browser
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    // Set options
+    browser.wantsFullScreenLayout = YES; // Decide if you want the photo browser full screen, i.e. whether the status bar is affected (defaults to YES)
+    browser.displayActionButton = YES; // Show action button to save, copy or email photos (defaults to NO)
+    [browser setInitialPageIndex:0];
+    // Present
+    [self.navigationController pushViewController:browser animated:YES];
+}
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return self.photos.count;
+}
+
+- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < self.photos.count)
+        return [self.photos objectAtIndex:index];
+    return nil;
 }
 
 @end

@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RestaurantDetailViewController : UIViewController<MKMapViewDelegate>
+@interface RestaurantDetailViewController : UIViewController<MKMapViewDelegate,
+MWPhotoBrowserDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageLabel;

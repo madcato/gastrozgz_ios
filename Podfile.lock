@@ -1,10 +1,21 @@
 PODS:
   - AFNetworking (1.3.1)
+  - MBProgressHUD (0.7)
+  - MWPhotoBrowser (1.0.1):
+    - MBProgressHUD
+    - SDWebImage (< 3.0.0)
+  - SDWebImage (2.7.4):
+    - SDWebImage/Main
+  - SDWebImage/Main (2.7.4)
 
 DEPENDENCIES:
   - AFNetworking (~> 1.2)
+  - MWPhotoBrowser (~> 1.0.1)
 
 SPEC CHECKSUMS:
   AFNetworking: 9ec8aafb9269236a7630bd8d9838ce2ba30fa2a0
+  MBProgressHUD: 1fd8591a2216d5dec6de24e09187bb03bcbe9946
+  MWPhotoBrowser: e54233d4c88e951a3b6b8f136393614cf319ac47
+  SDWebImage: 06f076026fe7867ab0100fce95d943f7bff981eb
 
 COCOAPODS: 0.20.2

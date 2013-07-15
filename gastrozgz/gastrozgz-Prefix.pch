@@ -17,4 +17,5 @@
     #import <SystemConfiguration/SystemConfiguration.h>
     #import <MapKit/MapKit.h>
     #import "AFNetworking.h"
+    #import "MWPhotoBrowser.h"
 #endif

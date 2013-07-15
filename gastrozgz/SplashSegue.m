@@ -21,8 +21,9 @@
                     completion:^(BOOL finished) {
                         AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication]
                                                                   delegate];
-                        appDelegate.window.rootViewController = self.destinationViewController;
-                        
+                        UINavigationController* navController =
+                        (UINavigationController*)appDelegate.window.rootViewController;
+                        [navController pushViewController:self.destinationViewController animated:NO];
                     }];
     
 }

@@ -46,6 +46,13 @@
     [self customizeAppearance];
     [self checkReachability];
     [OSDatabase initWithModelName:@"gastrozgz" testing:NO];
+    
+//    UINavigationController* navController = (UINavigationController*)
+//                                             self.window.rootViewController;
+//    navController.navigationBarHidden = YES;
+    [self.window makeKeyAndVisible];
+
+    
     return YES;
 }
 
@@ -93,4 +100,53 @@
     UIImage* background = [[UIImage imageNamed:@"nav_background"] resizableImageWithCapInsets:UIEdgeInsetsMake(0,1,0,1)];
     [[UINavigationBar appearance] setBackgroundImage:background forBarMetrics:UIBarMetricsDefault];
 }
+
+- (NSUInteger)application:(UIApplication *)application
+supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    return UIInterfaceOrientationMaskAllButUpsideDown;
+}
+
+
+@end
+
+#pragma mark - UITabBarController
+
+@implementation UITabBarController (Rotation_IOS6)
+
+-(BOOL)shouldAutorotate
+{
+    return [[self.viewControllers lastObject] shouldAutorotate];
+}
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return [[self.viewControllers lastObject] supportedInterfaceOrientations];
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return [[self.viewControllers lastObject] preferredInterfaceOrientationForPresentation];
+}
+
+@end
+
+#pragma mark - UINAviagationController
+
+@implementation UINavigationController (Rotation_IOS6)
+
+-(BOOL)shouldAutorotate
+{
+    return [[self.viewControllers lastObject] shouldAutorotate];
+}
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return [[self.viewControllers lastObject] supportedInterfaceOrientations];
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return [[self.viewControllers lastObject] preferredInterfaceOrientationForPresentation];
+}
+
 @end
