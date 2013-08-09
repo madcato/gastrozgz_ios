@@ -1,6 +1,6 @@
 //
 //  AppDelegate.m
-//  gatrozgz
+//  gastrozgz
 //
 //  Created by Daniel Vela on 6/25/13.
 //  Copyright (c) 2013 Daniel Vela. All rights reserved.
@@ -8,6 +8,12 @@
 
 #import "AppDelegate.h"
 #import "OSDatabase.h"
+#import "ServerURL.h"
+#import "OSCoreDataSyncEngine.h"
+#import "GZHTTPAPIClient.h"
+#import "Banner.h"
+#import "Categorias.h"
+#import "Establecimientos.h"
 
 @interface AppDelegate ()
 
@@ -17,10 +23,14 @@
 
 @implementation AppDelegate
 
++(NSString*)preferredLanguage {
+    return [[NSLocale preferredLanguages] objectAtIndex:0];
+}
 
 - (void)checkReachability
 {
-    self.httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString: @"http://www.apple.es/"]];
+    self.httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:
+                                                             [ServerURL serverURL]]];
     [self.httpClient setReachabilityStatusChangeBlock:
      ^(AFNetworkReachabilityStatus status) {
          switch (status) {
@@ -46,13 +56,16 @@
     [self customizeAppearance];
     [self checkReachability];
     [OSDatabase initWithModelName:@"gastrozgz" testing:NO];
-    
+    OSCoreDataSyncEngine *syncEngine = [OSCoreDataSyncEngine sharedEngine];
+    [syncEngine registerHTTPAPIClient:[GZHTTPAPIClient sharedClient]];
+    [syncEngine registerNSManagedObjectClassToSync:[Banner class]];
+    [syncEngine registerNSManagedObjectClassToSync:[Categorias class]];
+    [syncEngine registerNSManagedObjectClassToSync:[Establecimientos class]];
 //    UINavigationController* navController = (UINavigationController*)
 //                                             self.window.rootViewController;
 //    navController.navigationBarHidden = YES;
     [self.window makeKeyAndVisible];
 
-    
     return YES;
 }
 
@@ -76,6 +89,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [[OSCoreDataSyncEngine sharedEngine] startSync];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

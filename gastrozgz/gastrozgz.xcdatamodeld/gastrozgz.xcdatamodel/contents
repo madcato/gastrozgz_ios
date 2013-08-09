@@ -1,4 +1,64 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Banner" representedClassName="Banner" syncable="YES">
+        <attribute name="created_at" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="estado" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modified_at" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="objectid" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="url_imagen" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url_link" optional="YES" attributeType="String" syncable="YES"/>
+        <compoundIndexes>
+            <compoundIndex>
+                <index value="objectid"/>
+            </compoundIndex>
+        </compoundIndexes>
+    </entity>
+    <entity name="Categorias" representedClassName="Categorias" syncable="YES">
+        <attribute name="categoria" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="created_at" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="estado" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modified_at" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="objectid" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <compoundIndexes>
+            <compoundIndex>
+                <index value="objectid"/>
+            </compoundIndex>
+        </compoundIndexes>
+    </entity>
+    <entity name="Establecimientos" representedClassName="Establecimientos" syncable="YES">
+        <attribute name="carta" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cierre" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cod_postal" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contacto" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="created_at" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="descripcion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="direccion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="especialidades" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="estado" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fax" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gps_lat" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gps_lng" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="menu" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modified_at" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="movil" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nombre" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="objectid" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="poblacion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="telefono" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url_facebook" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url_foto" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url_twitter" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="web" optional="YES" attributeType="String" syncable="YES"/>
+        <compoundIndexes>
+            <compoundIndex>
+                <index value="objectid"/>
+            </compoundIndex>
+        </compoundIndexes>
+    </entity>
+    <elements>
+        <element name="Banner" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="Categorias" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Establecimientos" positionX="160" positionY="192" width="128" height="405"/>
+    </elements>
 </model>

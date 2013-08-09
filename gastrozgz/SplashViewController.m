@@ -1,6 +1,6 @@
 //
 //  SplashViewController.m
-//  gatrozgz
+//  gastrozgz
 //
 //  Created by Daniel Vela on 6/25/13.
 //  Copyright (c) 2013 Daniel Vela. All rights reserved.
@@ -56,7 +56,7 @@
         // Mostrar una alerta que explique al usuario que se está
         // realizando la primera sincronización.
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(initialSyncComplete)
+                                                 selector:@selector(initialSyncFinished)
                                                      name:kOSCoreDataSyncEngineSyncCompletedNotificationName
                                                    object:nil];
         [self showWaitPleaseView];

@@ -88,10 +88,10 @@ NSString * const kOSCoreDataSyncEngineSyncCompletedNotificationName = @"OSCoreDa
     //
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
     //
-    // Set the sort descriptors on the request to sort by updated_at in descending order
+    // Set the sort descriptors on the request to sort by modified_at in descending order
     //
     [request setSortDescriptors:[NSArray arrayWithObject:
-                                 [NSSortDescriptor sortDescriptorWithKey:@"updated_at" ascending:NO]]];
+                                 [NSSortDescriptor sortDescriptorWithKey:@"modified_at" ascending:NO]]];
     //
     // You are only interested in 1 result so limit the request to 1
     //
@@ -103,7 +103,7 @@ NSString * const kOSCoreDataSyncEngineSyncCompletedNotificationName = @"OSCoreDa
             //
             // Set date to the fetched result
             //
-            date = [[results lastObject] valueForKey:@"updated_at"];
+            date = [[results lastObject] valueForKey:@"modified_at"];
         }
     }];
 
@@ -126,7 +126,7 @@ NSString * const kOSCoreDataSyncEngineSyncCompletedNotificationName = @"OSCoreDa
 }
 
 - (void)setValue:(id)value forKey:(NSString *)key forManagedObject:(NSManagedObject *)managedObject {
-    if ([key isEqualToString:@"created_at"] || [key isEqualToString:@"updated_at"]) {
+    if ([key isEqualToString:@"created_at"] || [key isEqualToString:@"modified_at"]) {
         NSDate *date = [self dateUsingStringFromAPI:value];
         [managedObject setValue:date forKey:key];
     } else if ([value isKindOfClass:[NSDictionary class]]) {
@@ -169,20 +169,51 @@ NSString * const kOSCoreDataSyncEngineSyncCompletedNotificationName = @"OSCoreDa
     return results;
 }
 
+- (NSArray *)managedObjectsToDeleteForClass:(NSString *)className {
+    __block NSArray *results = nil;
+    NSManagedObjectContext *managedObjectContext = [[OSDatabase backgroundDatabase] managedObjectContext];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:className];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"estado = %@", @"D"];
+    [fetchRequest setPredicate:predicate];
+    [managedObjectContext performBlockAndWait:^{
+        NSError *error = nil;
+        results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    }];
+    
+    return results;
+}
+
+- (NSManagedObject *)managedObjectForClass:(NSString *)className withObjectId:(NSString*) objectid{
+    __block NSArray *results = nil;
+    NSManagedObjectContext *managedObjectContext = [[OSDatabase backgroundDatabase] managedObjectContext];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:className];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"objectid = %@", objectid];
+    [fetchRequest setPredicate:predicate];
+    [managedObjectContext performBlockAndWait:^{
+        NSError *error = nil;
+        results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    }];
+    
+    if ((results == nil) || ([results count] == 0)) {
+        return nil;
+    }
+    return results[0];
+}
+
 - (NSArray *)managedObjectsForClass:(NSString *)className sortedByKey:(NSString *)key usingArrayOfIds:(NSArray *)idArray inArrayOfIds:(BOOL)inIds {
     __block NSArray *results = nil;
     NSManagedObjectContext *managedObjectContext = [[OSDatabase backgroundDatabase] managedObjectContext];
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:className];
     NSPredicate *predicate;
     if (inIds) {
-        predicate = [NSPredicate predicateWithFormat:@"objectId IN %@", idArray];
+        predicate = [NSPredicate predicateWithFormat:@"objectid IN %@", idArray];
     } else {
-        predicate = [NSPredicate predicateWithFormat:@"NOT (objectId IN %@)", idArray];
+        predicate = [NSPredicate predicateWithFormat:@"NOT (objectid IN %@)", idArray];
     }
 
     [fetchRequest setPredicate:predicate];
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:
-                                      [NSSortDescriptor sortDescriptorWithKey:@"objectId" ascending:YES]]];
+                                      [NSSortDescriptor sortDescriptorWithKey:@"objectid" ascending:YES]]];
     [managedObjectContext performBlockAndWait:^{
         NSError *error = nil;
         results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
@@ -192,40 +223,50 @@ NSString * const kOSCoreDataSyncEngineSyncCompletedNotificationName = @"OSCoreDa
 }
 
 - (void)downloadDataForRegisteredObjects:(BOOL)useUpdatedAtDate toDeleteLocalRecords:(BOOL)toDelete {
-    NSMutableArray *operations = [NSMutableArray array];
-    
-    for (NSString *className in self.registeredClassesToSync) {
-        NSDate *mostRecentUpdatedDate = nil;
-        if (useUpdatedAtDate) {
-            mostRecentUpdatedDate = [self mostRecentUpdatedAtDateForEntityWithName:className];
-        }
-        NSMutableURLRequest *request = [self.registeredAPIClient
-                                        GETRequestForAllRecordsOfClass:className
-                                        updatedAfterDate:mostRecentUpdatedDate];
-        AFHTTPRequestOperation *operation = [self.registeredAPIClient HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            if ([responseObject isKindOfClass:[NSArray class]]) {
-                NSLog(@"Response for %@: %@", className, responseObject);
-                // Need to write JSON files to disk
-                [self writeJSONResponse:responseObject toDiskForClassWithName:className];
+    if (!toDelete) {
+        NSMutableArray *operations = [NSMutableArray array];
+        for (NSString *className in self.registeredClassesToSync) {
+            NSDate *mostRecentUpdatedDate = nil;
+            if (useUpdatedAtDate) {
+                mostRecentUpdatedDate = [self mostRecentUpdatedAtDateForEntityWithName:className];
             }
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"Request for class %@ failed with error: %@", className, error);
+            NSMutableURLRequest *request = [self.registeredAPIClient
+                                            GETRequestForAllRecordsOfClass:className
+                                            updatedAfterDate:mostRecentUpdatedDate];
+            AFHTTPRequestOperation *operation = [self.registeredAPIClient HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                NSArray* array;
+                if ([responseObject isKindOfClass:[NSData class]]) {
+                    NSError* error;
+                    array = [NSJSONSerialization JSONObjectWithData:responseObject
+                                                            options:0
+                                                              error:&error];
+                } else {
+                    array = responseObject;
+                }
+                if ([array isKindOfClass:[NSArray class]]) {
+                    //                NSLog(@"Response for %@: %@", className, array);
+                    // Need to write JSON files to disk
+                    [self writeJSONResponse:array toDiskForClassWithName:className];
+                }
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                NSLog(@"Request for class %@ failed with error: %@", className, error);
+            }];
+            
+            [operations addObject:operation];
+        }
+        
+        [self.registeredAPIClient enqueueBatchOfHTTPRequestOperations:operations progressBlock:^(NSUInteger numberOfCompletedOperations, NSUInteger totalNumberOfOperations) {
+            
+        } completionBlock:^(NSArray *operations) {
+            NSLog(@"All operations completed");
+            // Need to process JSON records into Core Data
+            
+            [self processJSONDataRecordsIntoCoreData];
         }];
         
-        [operations addObject:operation];
+    } else {
+        [self processJSONDataRecordsForDeletion];
     }
-    
-    [self.registeredAPIClient enqueueBatchOfHTTPRequestOperations:operations progressBlock:^(NSUInteger numberOfCompletedOperations, NSUInteger totalNumberOfOperations) {
-        
-    } completionBlock:^(NSArray *operations) {
-        NSLog(@"All operations completed");
-        // Need to process JSON records into Core Data
-        if (!toDelete) {
-            [self processJSONDataRecordsIntoCoreData];
-        } else {
-            [self processJSONDataRecordsForDeletion];
-        }
-    }];
 }
 
 - (void)processJSONDataRecordsIntoCoreData {
@@ -250,14 +291,13 @@ NSString * const kOSCoreDataSyncEngineSyncCompletedNotificationName = @"OSCoreDa
             // First get the downloaded records from the JSON response, verify there is at least one object in
             // the data, and then fetch all records stored in Core Data whose objectId matches those from the JSON response.
             //
-            NSArray *downloadedRecords = [self JSONDataRecordsForClass:className sortedByKey:@"objectId"];
+            NSArray *downloadedRecords = [self JSONDataRecordsForClass:className sortedByKey:@"objectid"];
             if ([downloadedRecords lastObject]) {
                 //
                 // Now you have a set of objects from the remote service and all of the matching objects
                 // (based on objectId) from your Core Data store. Iterate over all of the downloaded records
                 // from the remote service.
                 //
-                NSArray *storedRecords = [self managedObjectsForClass:className sortedByKey:@"objectId" usingArrayOfIds:[downloadedRecords valueForKey:@"objectId"] inArrayOfIds:YES];
                 int currentIndex = 0;
                 //
                 // If the number of records in your Core Data store is less than the currentIndex, you know that
@@ -268,16 +308,15 @@ NSString * const kOSCoreDataSyncEngineSyncCompletedNotificationName = @"OSCoreDa
                     NSManagedObject *storedManagedObject = nil;
 
                     // Make sure we don't access an index that is out of bounds as we are iterating over both collections together
-                    if ([storedRecords count] > currentIndex) {
-                        storedManagedObject = [storedRecords objectAtIndex:currentIndex];
-                    }
-
-                    if ([[storedManagedObject valueForKey:@"objectId"] isEqualToString:[record valueForKey:@"objectId"]]) {
+                  
+                    storedManagedObject = [self managedObjectForClass:className withObjectId:[record valueForKey:@"objectid"]];
+                    
+                    if (storedManagedObject != nil) {
                         //
                         // Do a quick spot check to validate the objectIds in fact do match, if they do update the stored
                         // object with the values received from the remote service
                         //
-                        [self updateManagedObject:[storedRecords objectAtIndex:currentIndex] withRecord:record];
+                        [self updateManagedObject:storedManagedObject withRecord:record];
                     } else {
                         //
                         // Otherwise you have a new object coming in from your remote service so create a new
@@ -318,38 +357,24 @@ NSString * const kOSCoreDataSyncEngineSyncCompletedNotificationName = @"OSCoreDa
     //
     for (NSString *className in self.registeredClassesToSync) {
         //
-        // Retrieve the JSON response records from disk
+        // Remove all objects with estado property set to 'D'
         //
-        NSArray *JSONRecords = [self JSONDataRecordsForClass:className sortedByKey:@"objectId"];
-        if ([JSONRecords count] > 0) {
-            //
-            // If there are any records fetch all locally stored records that are NOT in the list of downloaded records
-            //
-            NSArray *storedRecords = [self
-                                      managedObjectsForClass:className
-                                      sortedByKey:@"objectId"
-                                      usingArrayOfIds:[JSONRecords valueForKey:@"objectId"]
-                                      inArrayOfIds:NO];
-
-            //
-            // Schedule the NSManagedObject for deletion and save the context
-            //
-            [managedObjectContext performBlockAndWait:^{
-                for (NSManagedObject *managedObject in storedRecords) {
-                    [managedObjectContext deleteObject:managedObject];
-                }
-                NSError *error = nil;
-                BOOL saved = [managedObjectContext save:&error];
-                if (!saved) {
-                    NSLog(@"Unable to save context after deleting records for class %@ because %@", className, error);
-                }
-            }];
-        }
+        NSArray *storedRecords = [self
+                                  managedObjectsToDeleteForClass:className];
 
         //
-        // Delete all JSON Record response files to clean up after yourself
+        // Schedule the NSManagedObject for deletion and save the context
         //
-        [self deleteJSONDataRecordsForClassWithName:className];
+        [managedObjectContext performBlockAndWait:^{
+            for (NSManagedObject *managedObject in storedRecords) {
+                [managedObjectContext deleteObject:managedObject];
+            }
+            NSError *error = nil;
+            BOOL saved = [managedObjectContext save:&error];
+            if (!saved) {
+                NSLog(@"Unable to save context after deleting records for class %@ because %@", className, error);
+            }
+        }];
     }
 
     //
@@ -516,7 +541,7 @@ NSString * const kOSCoreDataSyncEngineSyncCompletedNotificationName = @"OSCoreDa
 + (void)deleteObject:(NSManagedObject*)object inContext:(NSManagedObjectContext *)context {
     [context performBlockAndWait:^{
         // 1
-        if ([[object valueForKey:@"objectId"] isEqualToString:@""] || [object valueForKey:@"objectId"] == nil) {
+        if ([[object valueForKey:@"objectid"] isEqualToString:@""] || [object valueForKey:@"objectid"] == nil) {
             [context deleteObject:object];
         } else {
             [object setValue:[NSNumber numberWithInt:OSObjectDeleted] forKey:@"syncStatus"];

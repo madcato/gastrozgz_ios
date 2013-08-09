@@ -1,6 +1,6 @@
 //
 //  AppDelegate.h
-//  gatrozgz
+//  gastrozgz
 //
 //  Created by Daniel Vela on 6/25/13.
 //  Copyright (c) 2013 Daniel Vela. All rights reserved.
@@ -11,5 +11,7 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
++(NSString*)preferredLanguage;
 
 @end

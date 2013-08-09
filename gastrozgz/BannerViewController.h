@@ -13,4 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (assign, nonatomic) NSUInteger index;
 
+@property (nonatomic, strong) NSString* imageURL;
+@property (nonatomic, strong) NSString* clickURL;
+
 @end

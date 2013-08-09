@@ -40,6 +40,11 @@
 		0B02C7E21779F871004F6C4C /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B02C7E11779F871004F6C4C /* ContactViewController.m */; };
 		0B4EFD6B177A007600B6B92B /* iTunesArtwork512 in Resources */ = {isa = PBXBuildFile; fileRef = 0B4EFD69177A007600B6B92B /* iTunesArtwork512 */; };
 		0B4EFD6C177A007600B6B92B /* iTunesArtwork1024 in Resources */ = {isa = PBXBuildFile; fileRef = 0B4EFD6A177A007600B6B92B /* iTunesArtwork1024 */; };
+		0B5D224717B3F55500820BC0 /* ServerURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D224617B3F55500820BC0 /* ServerURL.m */; };
+		0B5D224C17B3FC5000820BC0 /* GZHTTPAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D224B17B3FC5000820BC0 /* GZHTTPAPIClient.m */; };
+		0B5D224F17B3FD9000820BC0 /* Banner.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D224E17B3FD9000820BC0 /* Banner.m */; };
+		0B5D225317B44AB500820BC0 /* Categorias.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D225217B44AB500820BC0 /* Categorias.m */; };
+		0B5D225617B44D5700820BC0 /* Establecimientos.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D225517B44D5700820BC0 /* Establecimientos.m */; };
 		0B67519A177C3BE1009C5F49 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B675199177C3BE1009C5F49 /* QuartzCore.framework */; };
 		0B67519D177C4207009C5F49 /* RestaurantDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B67519C177C4207009C5F49 /* RestaurantDetailViewController.m */; };
 		0B6BD07617857DF8006BF0C8 /* BannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6BD07517857DF7006BF0C8 /* BannerViewController.m */; };
@@ -106,6 +111,16 @@
 		0B02C7E11779F871004F6C4C /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
 		0B4EFD69177A007600B6B92B /* iTunesArtwork512 */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork512; path = "graphic resources/icons/iTunesArtwork512"; sourceTree = "<group>"; };
 		0B4EFD6A177A007600B6B92B /* iTunesArtwork1024 */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork1024; path = "graphic resources/icons/iTunesArtwork1024"; sourceTree = "<group>"; };
+		0B5D224517B3F55500820BC0 /* ServerURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerURL.h; sourceTree = "<group>"; };
+		0B5D224617B3F55500820BC0 /* ServerURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerURL.m; sourceTree = "<group>"; };
+		0B5D224A17B3FC5000820BC0 /* GZHTTPAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZHTTPAPIClient.h; sourceTree = "<group>"; };
+		0B5D224B17B3FC5000820BC0 /* GZHTTPAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZHTTPAPIClient.m; sourceTree = "<group>"; };
+		0B5D224D17B3FD9000820BC0 /* Banner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Banner.h; sourceTree = "<group>"; };
+		0B5D224E17B3FD9000820BC0 /* Banner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Banner.m; sourceTree = "<group>"; };
+		0B5D225117B44AB500820BC0 /* Categorias.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Categorias.h; sourceTree = "<group>"; };
+		0B5D225217B44AB500820BC0 /* Categorias.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Categorias.m; sourceTree = "<group>"; };
+		0B5D225417B44D5700820BC0 /* Establecimientos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Establecimientos.h; sourceTree = "<group>"; };
+		0B5D225517B44D5700820BC0 /* Establecimientos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Establecimientos.m; sourceTree = "<group>"; };
 		0B675199177C3BE1009C5F49 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0B67519B177C4207009C5F49 /* RestaurantDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantDetailViewController.h; sourceTree = "<group>"; };
 		0B67519C177C4207009C5F49 /* RestaurantDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantDetailViewController.m; sourceTree = "<group>"; };
@@ -253,6 +268,7 @@
 		0B02C7D51779F80F004F6C4C /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				0B5D224117B3F47800820BC0 /* banners */,
 				0BAFB9C7179301FC003F0419 /* initial controllers */,
 				0BBAF18F177A03CA0093F689 /* db */,
 				0BBAF18A177A02810093F689 /* sync */,
@@ -280,6 +296,26 @@
 				0B02C7E11779F871004F6C4C /* ContactViewController.m */,
 			);
 			name = tabcontrollers;
+			sourceTree = "<group>";
+		};
+		0B5D224117B3F47800820BC0 /* banners */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = banners;
+			sourceTree = "<group>";
+		};
+		0B5D225017B44A9B00820BC0 /* data classes */ = {
+			isa = PBXGroup;
+			children = (
+				0B5D224D17B3FD9000820BC0 /* Banner.h */,
+				0B5D224E17B3FD9000820BC0 /* Banner.m */,
+				0B5D225117B44AB500820BC0 /* Categorias.h */,
+				0B5D225217B44AB500820BC0 /* Categorias.m */,
+				0B5D225417B44D5700820BC0 /* Establecimientos.h */,
+				0B5D225517B44D5700820BC0 /* Establecimientos.m */,
+			);
+			name = "data classes";
 			sourceTree = "<group>";
 		};
 		0BAFB9C11792D21C003F0419 /* images */ = {
@@ -310,9 +346,13 @@
 		0BBAF18A177A02810093F689 /* sync */ = {
 			isa = PBXGroup;
 			children = (
+				0B5D224A17B3FC5000820BC0 /* GZHTTPAPIClient.h */,
+				0B5D224B17B3FC5000820BC0 /* GZHTTPAPIClient.m */,
 				0BBAF18E177A02BD0093F689 /* HTTPAPIClient.h */,
 				0BBAF18B177A02AC0093F689 /* OSCoreDataSyncEngine.h */,
 				0BBAF18C177A02AC0093F689 /* OSCoreDataSyncEngine.m */,
+				0B5D224517B3F55500820BC0 /* ServerURL.h */,
+				0B5D224617B3F55500820BC0 /* ServerURL.m */,
 			);
 			name = sync;
 			sourceTree = "<group>";
@@ -320,6 +360,7 @@
 		0BBAF18F177A03CA0093F689 /* db */ = {
 			isa = PBXGroup;
 			children = (
+				0B5D225017B44A9B00820BC0 /* data classes */,
 				0BBAF190177A03D80093F689 /* OSDatabase.h */,
 				0BBAF191177A03D80093F689 /* OSDatabase.m */,
 				0BBAF193177A03F10093F689 /* NSManagedObject+JSON.h */,
@@ -467,6 +508,11 @@
 				0B67519D177C4207009C5F49 /* RestaurantDetailViewController.m in Sources */,
 				0B6BD07617857DF8006BF0C8 /* BannerViewController.m in Sources */,
 				0BAFB9C6179301EF003F0419 /* RestaurantCell.m in Sources */,
+				0B5D224717B3F55500820BC0 /* ServerURL.m in Sources */,
+				0B5D224C17B3FC5000820BC0 /* GZHTTPAPIClient.m in Sources */,
+				0B5D224F17B3FD9000820BC0 /* Banner.m in Sources */,
+				0B5D225317B44AB500820BC0 /* Categorias.m in Sources */,
+				0B5D225617B44D5700820BC0 /* Establecimientos.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

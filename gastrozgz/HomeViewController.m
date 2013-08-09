@@ -1,6 +1,6 @@
 //
 //  HomeViewController.m
-//  gatrozgz
+//  gastrozgz
 //
 //  Created by Daniel Vela on 6/25/13.
 //  Copyright (c) 2013 Daniel Vela. All rights reserved.
@@ -8,8 +8,12 @@
 
 #import "HomeViewController.h"
 #import "BannerViewController.h"
+#import "AppDelegate.h"
+#import "OSDatabase.h"
 
-@interface HomeViewController ()
+@interface HomeViewController () {
+    NSArray* banners;
+}
 
 @end
 
@@ -28,6 +32,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    banners = [[OSDatabase defaultDatabase] getResultsFrom:@"Banner"
+                                                 sortArray:@[@"created_at"]
+                                             withPredicate:nil
+                                              andArguments:nil];
     
     self.pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
                                                           navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
@@ -36,15 +44,16 @@
     self.pageController.dataSource = self;
     [[self.pageController view] setFrame:[[self view] bounds]];
     
-    BannerViewController *initialViewController = [self viewControllerAtIndex:0];
-    
-    NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
-    
-    [self.pageController setViewControllers:viewControllers
-                                  direction:UIPageViewControllerNavigationDirectionForward
-                                   animated:NO
-                                 completion:nil];
-    
+    if ([banners count] > 0) {
+        BannerViewController *initialViewController = [self viewControllerAtIndex:0];
+        
+        NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
+        
+        [self.pageController setViewControllers:viewControllers
+                                      direction:UIPageViewControllerNavigationDirectionForward
+                                       animated:NO
+                                     completion:nil];
+    }
     [self addChildViewController:self.pageController];
     [[self view] addSubview:[self.pageController view]];
     [self.pageController didMoveToParentViewController:self];
@@ -59,6 +68,8 @@
 - (BannerViewController *)viewControllerAtIndex:(NSUInteger)index {
     BannerViewController *childViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BannerView"];
     childViewController.index = index;
+    childViewController.imageURL = [banners[index] valueForKey:@"url_imagen"];
+    childViewController.clickURL = [banners[index] valueForKey:@"url_link"];
     return childViewController;
 }
 
@@ -85,7 +96,7 @@
     
     index++;
     
-    if (index == 5) {
+    if (index == [banners count]) {
         return nil;
     }
     
@@ -95,7 +106,7 @@
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {
     // The number of items reflected in the page indicator.
-    return 5;
+    return [banners count];
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {

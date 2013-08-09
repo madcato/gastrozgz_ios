@@ -1,6 +1,6 @@
 //
 //  RestaurantsViewController.h
-//  gatrozgz
+//  gastrozgz
 //
 //  Created by Daniel Vela on 6/25/13.
 //  Copyright (c) 2013 Daniel Vela. All rights reserved.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RestaurantsViewController : UITableViewController
+@interface RestaurantsViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
 @end

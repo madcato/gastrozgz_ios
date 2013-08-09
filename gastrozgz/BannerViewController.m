@@ -27,13 +27,17 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-     self.image.image = [UIImage imageNamed:@"splash.jpg"];
+    [self.image setImageWithURL:[NSURL URLWithString:self.imageURL]];
     UITapGestureRecognizer* gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped)];
     [self.image addGestureRecognizer:gesture];
 }
 
 - (void)imageTapped {
-    
+    if ((self.clickURL != nil) && ([self.clickURL isEqualToString:@""]) == NO) {
+        NSURL* url = [NSURL URLWithString:self.clickURL];
+        if ([[UIApplication sharedApplication] canOpenURL:url] == YES)
+            [[UIApplication sharedApplication] openURL:url];
+    }
 }
 
 - (void)didReceiveMemoryWarning

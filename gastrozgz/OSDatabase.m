@@ -100,9 +100,11 @@
         }
         [fetchRequest setSortDescriptors:sortDescriptors];
     }
-    NSPredicate* predicate = [NSPredicate predicateWithFormat:predicateText argumentArray:arguments];
-    assert(predicate != nil);
-    [fetchRequest setPredicate:predicate];
+    if (predicateText != nil) {
+        NSPredicate* predicate = [NSPredicate predicateWithFormat:predicateText argumentArray:arguments];
+        assert(predicate != nil);
+        [fetchRequest setPredicate:predicate];        
+    }
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
     NSError* error = nil;
