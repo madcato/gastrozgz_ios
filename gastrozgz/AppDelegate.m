@@ -14,6 +14,7 @@
 #import "Banner.h"
 #import "Categorias.h"
 #import "Establecimientos.h"
+#import "CatEst.h"
 
 @interface AppDelegate ()
 
@@ -61,6 +62,7 @@
     [syncEngine registerNSManagedObjectClassToSync:[Banner class]];
     [syncEngine registerNSManagedObjectClassToSync:[Categorias class]];
     [syncEngine registerNSManagedObjectClassToSync:[Establecimientos class]];
+    [syncEngine registerNSManagedObjectClassToSync:[CatEst class]];
 //    UINavigationController* navController = (UINavigationController*)
 //                                             self.window.rootViewController;
 //    navController.navigationBarHidden = YES;

@@ -2,13 +2,14 @@
 //  Establecimientos.h
 //  gastrozgz
 //
-//  Created by Daniel Vela on 8/9/13.
+//  Created by Daniel Vela on 8/10/13.
 //  Copyright (c) 2013 Daniel Vela. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class Categorias;
 
 @interface Establecimientos : NSManagedObject
 
@@ -36,5 +37,14 @@
 @property (nonatomic, retain) NSString * url_foto;
 @property (nonatomic, retain) NSString * url_twitter;
 @property (nonatomic, retain) NSString * web;
+@property (nonatomic, retain) NSSet *categorias;
+@end
+
+@interface Establecimientos (CoreDataGeneratedAccessors)
+
+- (void)addCategoriasObject:(Categorias *)value;
+- (void)removeCategoriasObject:(Categorias *)value;
+- (void)addCategorias:(NSSet *)values;
+- (void)removeCategorias:(NSSet *)values;
 
 @end

@@ -46,6 +46,9 @@
     if([className isEqualToString:@"Establecimientos"]) {
         className2 = [ServerURL establecimientosURL:[AppDelegate preferredLanguage]];
     }
+    if([className isEqualToString:@"CatEst"]) {
+        className2 = [ServerURL catEstURL];
+    }
     return className2;
 }
 - (NSMutableURLRequest *)GETRequestForClass:(NSString *)className parameters:(NSDictionary *)parameters {

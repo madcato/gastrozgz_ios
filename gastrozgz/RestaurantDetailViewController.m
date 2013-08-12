@@ -8,6 +8,7 @@
 
 #import "RestaurantDetailViewController.h"
 #import "AppDelegate.h"
+#import "Establecimientos.h"
 
 @interface RestaurantDetailViewController ()
 
@@ -26,22 +27,33 @@
     return self;
 }
 
+- (NSString*)prepareDescription:(NSString*)text {
+    NSString* html = [NSString stringWithFormat:@"<HTML>"
+                      "<BODY style='color:white;background-color:black;font-family:Helvetica;'>"
+                      "%@</BODY></HTML>",text];
+    return html;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.titleLabel.text = self.object[@"title"];
-    [self.imageLabel setImageWithURL:[NSURL URLWithString:self.object[@"imageUrl"]]
+	self.titleLabel.text = self.object.nombre;
+    [self.imageLabel setImageWithURL:[NSURL URLWithString:self.object.url_foto]
                     placeholderImage:[UIImage imageNamed:@"copa_placeholder"]];
-    self.descriptionText.text = self.object[@"description"];
-    self.address.text = self.object[@"address"];
+    [self.descriptionText loadHTMLString:
+                            [self prepareDescription:self.object.descripcion]
+                                 baseURL:nil];
+    [[self.descriptionText scrollView] setIndicatorStyle:
+                                        UIScrollViewIndicatorStyleWhite];
+    self.address.text = self.object.direccion;
     
     MKPointAnnotation* annotation = [[MKPointAnnotation alloc] init];
     CLLocationCoordinate2D cord;
-    cord.latitude = [self.object[@"latitude"]floatValue];
-    cord.longitude = [self.object[@"longitude"]floatValue];
+    cord.latitude = [self.object.gps_lat floatValue];
+    cord.longitude = [self.object.gps_lng floatValue];
     annotation.coordinate = cord;
-    annotation.title = self.object[@"title"];
-    annotation.subtitle = self.object[@"address"];
+    annotation.title = self.object.nombre;
+    annotation.subtitle = self.object.direccion;
     [self.locationMap addAnnotation:annotation];
     [self.locationMap setCenterCoordinate:cord];
     MKCoordinateRegion region = self.locationMap.region;

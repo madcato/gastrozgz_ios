@@ -19,11 +19,19 @@
         <attribute name="estado" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="modified_at" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="objectid" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="establecimientos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Establecimientos" inverseName="categorias" inverseEntity="Establecimientos" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
                 <index value="objectid"/>
             </compoundIndex>
         </compoundIndexes>
+    </entity>
+    <entity name="CatEst" representedClassName="CatEst" syncable="YES">
+        <attribute name="codigo_categoria" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="codigo_establecimiento" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="created_at" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="modified_at" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="objectid" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
     </entity>
     <entity name="Establecimientos" representedClassName="Establecimientos" syncable="YES">
         <attribute name="carta" optional="YES" attributeType="String" syncable="YES"/>
@@ -50,6 +58,7 @@
         <attribute name="url_foto" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url_twitter" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="web" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="categorias" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Categorias" inverseName="establecimientos" inverseEntity="Categorias" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
                 <index value="objectid"/>
@@ -58,7 +67,8 @@
     </entity>
     <elements>
         <element name="Banner" positionX="160" positionY="192" width="128" height="135"/>
-        <element name="Categorias" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Establecimientos" positionX="160" positionY="192" width="128" height="405"/>
+        <element name="Categorias" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="Establecimientos" positionX="160" positionY="192" width="128" height="420"/>
+        <element name="CatEst" positionX="160" positionY="192" width="128" height="120"/>
     </elements>
 </model>

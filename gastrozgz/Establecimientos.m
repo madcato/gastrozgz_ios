@@ -2,11 +2,12 @@
 //  Establecimientos.m
 //  gastrozgz
 //
-//  Created by Daniel Vela on 8/9/13.
+//  Created by Daniel Vela on 8/10/13.
 //  Copyright (c) 2013 Daniel Vela. All rights reserved.
 //
 
 #import "Establecimientos.h"
+#import "Categorias.h"
 
 
 @implementation Establecimientos
@@ -35,5 +36,6 @@
 @dynamic url_foto;
 @dynamic url_twitter;
 @dynamic web;
+@dynamic categorias;
 
 @end

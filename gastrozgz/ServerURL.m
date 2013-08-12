@@ -45,4 +45,9 @@
     return banner;
 }
 
++ (NSString*)catEstURL {
+    NSString* banner = [NSString stringWithFormat:CAT_EST_URL];
+    return banner;
+}
+
 @end

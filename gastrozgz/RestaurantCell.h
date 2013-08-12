@@ -11,6 +11,6 @@
 @interface RestaurantCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UILabel *title;
-@property (weak, nonatomic) IBOutlet UITextView *description;
+@property (weak, nonatomic) IBOutlet UIWebView *description;
 
 @end

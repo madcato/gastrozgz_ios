@@ -7,12 +7,15 @@
 //
 
 #import "MapViewController.h"
+#import "OSDatabase.h"
+#import "Establecimientos.h"
+#import "RestaurantDetailViewController.h"
 
 @interface MapViewController ()
 
 @property (nonatomic, strong) UIView* loadingView;
 @property (nonatomic, strong) NSMutableArray* array;
-
+@property (nonatomic, strong) NSArray* tempLocations;
 @end
 
 @implementation MapViewController
@@ -31,20 +34,17 @@
                                            initWithMapView:self.mapView];
     self.navigationItem.rightBarButtonItem = button;
     [self pressUserTrackingButton];
-    
-    NSURL* url = [[NSBundle mainBundle] URLForResource:@"stations_bizi"
-                                         withExtension:@"plist"];
-    NSDictionary* tempDict = [NSDictionary dictionaryWithContentsOfURL:url];
-    NSArray* tempLocations = [tempDict valueForKey:@"stations"];
+
+    self.tempLocations = [self establecimientosArray];
     self.array = [NSMutableArray array];
-    for (NSDictionary* location in tempLocations) {
+    for (Establecimientos* location in self.tempLocations) {
         MKPointAnnotation* annotation = [[MKPointAnnotation alloc] init];
         CLLocationCoordinate2D cord;
-        cord.latitude = [location[@"latitude"]floatValue];
-        cord.longitude = [location[@"longitude"]floatValue];
+        cord.latitude = [location.gps_lat floatValue];
+        cord.longitude = [location.gps_lng floatValue];
         annotation.coordinate = cord;
-        annotation.title = @"Hola";
-        annotation.subtitle = @"Adios";
+        annotation.title = location.nombre;
+        annotation.subtitle = location.direccion;
         
         [self.array addObject:annotation];
     }
@@ -105,7 +105,11 @@
 - (void)mapView:(MKMapView *)mapView
  annotationView:(MKAnnotationView *)view
 calloutAccessoryControlTapped:(UIControl *)control {
-    
+    RestaurantDetailViewController* viewController = [self.storyboard
+                                                      instantiateViewControllerWithIdentifier:@"RestaurantDetail"];
+    NSUInteger index = [self.array indexOfObject:view.annotation];
+    viewController.object = self.tempLocations[index];
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 #pragma mark - Help View
@@ -148,6 +152,18 @@ calloutAccessoryControlTapped:(UIControl *)control {
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
     return UIInterfaceOrientationPortrait;
+}
+
+- (NSArray *)establecimientosArray {
+    __block NSArray *results = nil;
+    NSManagedObjectContext *managedObjectContext = [[OSDatabase backgroundDatabase] managedObjectContext];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Establecimientos"];
+    [managedObjectContext performBlockAndWait:^{
+        NSError *error = nil;
+        results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    }];
+    
+    return results;
 }
 
 @end

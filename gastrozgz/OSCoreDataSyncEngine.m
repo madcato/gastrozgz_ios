@@ -9,6 +9,9 @@
 #import "OSCoreDataSyncEngine.h"
 #import "OSDatabase.h"
 #import "NSManagedObject+JSON.h"
+#import "CatEst.h"
+#import "Categorias.h"
+#import "Establecimientos.h"
 
 NSString * const kOSCoreDataSyncEngineInitialCompleteKey = @"OSCoreDataSyncEngineInitialSyncCompleted";
 NSString * const kOSCoreDataSyncEngineSyncCompletedNotificationName = @"OSCoreDataSyncEngineSyncCompleted";
@@ -169,6 +172,18 @@ NSString * const kOSCoreDataSyncEngineSyncCompletedNotificationName = @"OSCoreDa
     return results;
 }
 
+- (NSArray *)catEstArray {
+    __block NSArray *results = nil;
+    NSManagedObjectContext *managedObjectContext = [[OSDatabase backgroundDatabase] managedObjectContext];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"CatEst"];
+    [managedObjectContext performBlockAndWait:^{
+        NSError *error = nil;
+        results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    }];
+    
+    return results;
+}
+
 - (NSArray *)managedObjectsToDeleteForClass:(NSString *)className {
     __block NSArray *results = nil;
     NSManagedObjectContext *managedObjectContext = [[OSDatabase backgroundDatabase] managedObjectContext];
@@ -244,7 +259,7 @@ NSString * const kOSCoreDataSyncEngineSyncCompletedNotificationName = @"OSCoreDa
                     array = responseObject;
                 }
                 if ([array isKindOfClass:[NSArray class]]) {
-                    //                NSLog(@"Response for %@: %@", className, array);
+                    //NSLog(@"Response for %@: %@", className, array);
                     // Need to write JSON files to disk
                     [self writeJSONResponse:array toDiskForClassWithName:className];
                 }
@@ -351,32 +366,59 @@ NSString * const kOSCoreDataSyncEngineSyncCompletedNotificationName = @"OSCoreDa
 }
 
 - (void)processJSONDataRecordsForDeletion {
+    
     NSManagedObjectContext *managedObjectContext = [[OSDatabase backgroundDatabase] managedObjectContext];
     //
     // Iterate over all registered classes to sync
     //
     for (NSString *className in self.registeredClassesToSync) {
-        //
-        // Remove all objects with estado property set to 'D'
-        //
-        NSArray *storedRecords = [self
-                                  managedObjectsToDeleteForClass:className];
+        if ([className isEqualToString:@"CatEst"] == NO) {
+            //
+            // Remove all objects with estado property set to 'D'
+            //
+            NSArray *storedRecords = [self
+                                      managedObjectsToDeleteForClass:className];
 
-        //
-        // Schedule the NSManagedObject for deletion and save the context
-        //
-        [managedObjectContext performBlockAndWait:^{
-            for (NSManagedObject *managedObject in storedRecords) {
-                [managedObjectContext deleteObject:managedObject];
+            //
+            // Schedule the NSManagedObject for deletion and save the context
+            //
+            [managedObjectContext performBlockAndWait:^{
+                for (NSManagedObject *managedObject in storedRecords) {
+                    [managedObjectContext deleteObject:managedObject];
+                }
+                NSError *error = nil;
+                BOOL saved = [managedObjectContext save:&error];
+                if (!saved) {
+                    NSLog(@"Unable to save context after deleting records for class %@ because %@", className, error);
+                }
+            }];
+        } else {
+            // Create relations between Categories and Restaurants
+            NSArray* catEstArrays = [self catEstArray];
+            for (CatEst* catEst in catEstArrays) {
+                Establecimientos* establecimiento = (Establecimientos*)
+                [self managedObjectForClass:@"Establecimientos"
+                               withObjectId:catEst.codigo_establecimiento];
+                Categorias* categoria = (Categorias*)
+                [self managedObjectForClass:@"Categorias"
+                               withObjectId:catEst.codigo_categoria];
+                
+                [establecimiento addCategoriasObject:categoria];
+                [categoria addEstablecimientosObject:establecimiento];
             }
-            NSError *error = nil;
-            BOOL saved = [managedObjectContext save:&error];
-            if (!saved) {
-                NSLog(@"Unable to save context after deleting records for class %@ because %@", className, error);
-            }
-        }];
+            // Delete CatEst table
+            [managedObjectContext performBlockAndWait:^{
+                for (NSManagedObject *managedObject in catEstArrays) {
+                    [managedObjectContext deleteObject:managedObject];
+                }
+                NSError *error = nil;
+                BOOL saved = [managedObjectContext save:&error];
+                if (!saved) {
+                    NSLog(@"Unable to save context after deleting records for class %@ because %@", className, error);
+                }
+            }];
+        }
     }
-
     //
     // Execute the sync completion operations as this is now the final step of the sync process
     //
