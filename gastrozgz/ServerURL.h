@@ -17,6 +17,7 @@
 #define CATEGORIAS_URL @"lst_categorias/%@"
 #define ESTABLECIMIENTOS_URL @"lst_establecimientos/%@"
 #define CAT_EST_URL @"categorias_establecimientos"
+#define IMAGES_URL @"fotos_establecimiento/%@"
 
 @interface ServerURL : NSObject
 
@@ -26,5 +27,6 @@
 + (NSString*)categoriasURL:(NSString*)language;
 + (NSString*)establecimientosURL:(NSString*)language;
 + (NSString*)catEstURL;
++ (NSString*)imageListURL:(NSString*)ido;
 
 @end

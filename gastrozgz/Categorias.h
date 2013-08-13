@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSDate * modified_at;
 @property (nonatomic, retain) NSString * objectid;
 @property (nonatomic, retain) NSSet *establecimientos;
+@property (nonatomic, retain) NSNumber *selected;
 @end
 
 @interface Categorias (CoreDataGeneratedAccessors)

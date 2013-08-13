@@ -57,8 +57,15 @@
                                                         [RestaurantCell class]
                                                 forCellReuseIdentifier:
                                                             @"RestaurantCell"];
+
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    _fetchedResultsController = nil;
+    [self.tableView reloadData];
     [self.searchDisplayController.searchResultsTableView setBackgroundColor:
-                                                        [UIColor blackColor]];
+     [UIColor blackColor]];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -292,7 +299,8 @@
                                                    managedObjectContext];
     NSArray *sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"created_at"
                                                                ascending:NO]]; // your sort descriptors here
-    NSPredicate *filterPredicate = nil;
+    NSPredicate *filterPredicate = [NSPredicate predicateWithFormat:
+                                    @"ANY categorias.selected == YES"];
     
     /*
      Set up the fetched results controller.

@@ -11,7 +11,7 @@
 @class Establecimientos;
 
 @interface RestaurantDetailViewController : UIViewController<MKMapViewDelegate,
-MWPhotoBrowserDelegate>
+MWPhotoBrowserDelegate, UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageLabel;
@@ -19,9 +19,12 @@ MWPhotoBrowserDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *descriptionText;
 @property (weak, nonatomic) IBOutlet MKMapView *locationMap;
 @property (weak, nonatomic) IBOutlet UILabel *address;
+@property (weak, nonatomic) IBOutlet UIButton *moreDataButton;
 
 @property (strong, nonatomic) Establecimientos *object;
 
 - (IBAction)actionPressed:(id)sender;
 - (IBAction)viewMorePressed:(id)sender;
+- (IBAction)moreDataPressed:(id)sender;
+
 @end

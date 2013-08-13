@@ -50,4 +50,10 @@
     return banner;
 }
 
++ (NSString*)imageListURL:(NSString*)ido {
+    NSString* images = [NSString stringWithFormat:IMAGES_URL,ido];
+    NSString* url = [NSString stringWithFormat:@"%@%@",[self baseURL],images];
+    return url;
+}
+
 @end

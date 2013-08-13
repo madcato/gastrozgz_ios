@@ -18,4 +18,6 @@
     #import <MapKit/MapKit.h>
     #import "AFNetworking.h"
     #import "MWPhotoBrowser.h"
+    #import <Twitter/Twitter.h>
+    #import <Social/Social.h>
 #endif

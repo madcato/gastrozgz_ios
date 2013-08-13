@@ -19,6 +19,7 @@
         <attribute name="estado" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="modified_at" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="objectid" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="selected" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <relationship name="establecimientos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Establecimientos" inverseName="categorias" inverseEntity="Establecimientos" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
@@ -67,8 +68,8 @@
     </entity>
     <elements>
         <element name="Banner" positionX="160" positionY="192" width="128" height="135"/>
-        <element name="Categorias" positionX="160" positionY="192" width="128" height="135"/>
-        <element name="Establecimientos" positionX="160" positionY="192" width="128" height="420"/>
+        <element name="Categorias" positionX="160" positionY="192" width="128" height="150"/>
         <element name="CatEst" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Establecimientos" positionX="160" positionY="192" width="128" height="420"/>
     </elements>
 </model>

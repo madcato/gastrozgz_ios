@@ -18,5 +18,6 @@
 @dynamic modified_at;
 @dynamic objectid;
 @dynamic establecimientos;
+@dynamic selected;
 
 @end

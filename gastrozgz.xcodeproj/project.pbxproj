@@ -46,6 +46,10 @@
 		0B67519A177C3BE1009C5F49 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B675199177C3BE1009C5F49 /* QuartzCore.framework */; };
 		0B67519D177C4207009C5F49 /* RestaurantDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B67519C177C4207009C5F49 /* RestaurantDetailViewController.m */; };
 		0B6BD07617857DF8006BF0C8 /* BannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6BD07517857DF7006BF0C8 /* BannerViewController.m */; };
+		0BA48E6E17BAD75900F508D4 /* list_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA48E6D17BAD75900F508D4 /* list_button.png */; };
+		0BA48E7117BAD8D300F508D4 /* CatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA48E7017BAD8D300F508D4 /* CatListViewController.m */; };
+		0BA48E7317BAECCF00F508D4 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BA48E7217BAECCF00F508D4 /* Social.framework */; };
+		0BA48E7517BAECD300F508D4 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BA48E7417BAECD300F508D4 /* Twitter.framework */; };
 		0BA4D5BC177CA6E20091146C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BA4D5BB177CA6E20091146C /* MapKit.framework */; };
 		0BAFB9C31792D299003F0419 /* copa.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BAFB9C21792D299003F0419 /* copa.png */; };
 		0BAFB9C6179301EF003F0419 /* RestaurantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAFB9C5179301EF003F0419 /* RestaurantCell.m */; };
@@ -122,6 +126,11 @@
 		0B67519C177C4207009C5F49 /* RestaurantDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantDetailViewController.m; sourceTree = "<group>"; };
 		0B6BD07417857DF7006BF0C8 /* BannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerViewController.h; sourceTree = "<group>"; };
 		0B6BD07517857DF7006BF0C8 /* BannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerViewController.m; sourceTree = "<group>"; };
+		0BA48E6D17BAD75900F508D4 /* list_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_button.png; sourceTree = "<group>"; };
+		0BA48E6F17BAD8D200F508D4 /* CatListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatListViewController.h; sourceTree = "<group>"; };
+		0BA48E7017BAD8D300F508D4 /* CatListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatListViewController.m; sourceTree = "<group>"; };
+		0BA48E7217BAECCF00F508D4 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		0BA48E7417BAECD300F508D4 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		0BA4D5BB177CA6E20091146C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		0BAFB9BF1792CEE9003F0419 /* stations_bizi.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = stations_bizi.plist; sourceTree = "<group>"; };
 		0BAFB9C21792D299003F0419 /* copa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = copa.png; sourceTree = "<group>"; };
@@ -158,6 +167,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BA48E7517BAECD300F508D4 /* Twitter.framework in Frameworks */,
+				0BA48E7317BAECCF00F508D4 /* Social.framework in Frameworks */,
 				0BA4D5BC177CA6E20091146C /* MapKit.framework in Frameworks */,
 				0B67519A177C3BE1009C5F49 /* QuartzCore.framework in Frameworks */,
 				0BBAF19C177A04880093F689 /* SystemConfiguration.framework in Frameworks */,
@@ -200,6 +211,8 @@
 		0B02C78D1779F06E004F6C4C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0BA48E7417BAECD300F508D4 /* Twitter.framework */,
+				0BA48E7217BAECCF00F508D4 /* Social.framework */,
 				0BA4D5BB177CA6E20091146C /* MapKit.framework */,
 				0B675199177C3BE1009C5F49 /* QuartzCore.framework */,
 				0BBAF19B177A04880093F689 /* SystemConfiguration.framework */,
@@ -281,6 +294,8 @@
 				0B6BD07517857DF7006BF0C8 /* BannerViewController.m */,
 				0BAFB9C4179301EF003F0419 /* RestaurantCell.h */,
 				0BAFB9C5179301EF003F0419 /* RestaurantCell.m */,
+				0BA48E6F17BAD8D200F508D4 /* CatListViewController.h */,
+				0BA48E7017BAD8D300F508D4 /* CatListViewController.m */,
 			);
 			name = classes;
 			sourceTree = "<group>";
@@ -325,6 +340,7 @@
 		0BAFB9C11792D21C003F0419 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				0BA48E6D17BAD75900F508D4 /* list_button.png */,
 				0BAFB9D217933D99003F0419 /* purple_button.png */,
 				0BAFB9CE179310EE003F0419 /* cellaccessory.png */,
 				0BAFB9CC17930B97003F0419 /* copa_placeholder.png */,
@@ -453,6 +469,7 @@
 				0BAFB9CF179310EE003F0419 /* cellaccessory.png in Resources */,
 				0BAFB9D11793130D003F0419 /* nav_background.png in Resources */,
 				0BAFB9D317933D99003F0419 /* purple_button.png in Resources */,
+				0BA48E6E17BAD75900F508D4 /* list_button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,6 +534,7 @@
 				0BFD071917B5C14C00ED5C95 /* CatEst.m in Sources */,
 				0BFD072217B5C63C00ED5C95 /* Categorias.m in Sources */,
 				0BFD072517B5C63D00ED5C95 /* Establecimientos.m in Sources */,
+				0BA48E7117BAD8D300F508D4 /* CatListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,11 +625,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DE6D242D91524B19A17FCD03 /* Pods.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Daniel Vela";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "gastrozgz/gastrozgz-Prefix.pch";
 				INFOPLIST_FILE = "gastrozgz/gastrozgz-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9AC48F53-6B12-460E-8F2F-D696AEF33981";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

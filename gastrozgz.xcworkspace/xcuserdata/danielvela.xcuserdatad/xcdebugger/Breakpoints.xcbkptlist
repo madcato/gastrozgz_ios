@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "gastrozgz/RestaurantsViewController.m"
-         timestampString = "398023343.144685"
+         timestampString = "398123933.664564"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "98"
-         endingLineNumber = "98"
+         startingLineNumber = "105"
+         endingLineNumber = "105"
          landmarkName = "-fetchedResultsController:configureCell:atIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>

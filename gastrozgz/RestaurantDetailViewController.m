@@ -9,8 +9,14 @@
 #import "RestaurantDetailViewController.h"
 #import "AppDelegate.h"
 #import "Establecimientos.h"
+#import "ServerURL.h"
+#import "AppDelegate.h"
 
-@interface RestaurantDetailViewController ()
+@interface RestaurantDetailViewController () {
+    AFJSONRequestOperation* operation;
+    NSArray* downloadedImageList;
+    BOOL shareSheet;
+}
 
 @property (nonatomic, strong) NSMutableArray* photos;
 
@@ -65,6 +71,9 @@
     UIImage* image = [UIImage imageNamed:@"purple_button"];
     image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 20)];
     [self.viewMoreButton setBackgroundImage:image forState:UIControlStateNormal];
+    [self.moreDataButton setBackgroundImage:image forState:UIControlStateNormal];
+    
+    [self downloadImageList];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -86,13 +95,84 @@
     [self setDescriptionText:nil];
     [self setLocationMap:nil];
     [self setAddress:nil];
+    [self setMoreDataButton:nil];
     [super viewDidUnload];
 }
+
 - (IBAction)actionPressed:(id)sender {
+    [self showShareSheet];
 }
 
 - (IBAction)viewMorePressed:(id)sender {
     [self showGallery:nil];
+}
+
+- (IBAction)moreDataPressed:(id)sender {
+    [self showInfoSheet];
+}
+
+- (void)showShareSheet {
+    shareSheet = YES;
+    UIActionSheet* actionSheet = [[UIActionSheet alloc] initWithTitle:@"Compartir" delegate:self cancelButtonTitle:@"Cancelar" destructiveButtonTitle:nil otherButtonTitles:@"Compartir por Twitter", @"Compartir por Facebook", nil];
+    AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    UINavigationController* navController = (UINavigationController*)appDelegate.window.rootViewController;
+    UITabBarController* tabController = (UITabBarController*)navController.topViewController;
+    [actionSheet showFromTabBar:tabController.tabBar];
+}
+
+
+- (void)showInfoSheet {
+    shareSheet = NO;
+    UIActionSheet* actionSheet = [[UIActionSheet alloc] initWithTitle:@"Información" delegate:self cancelButtonTitle:@"Ok" destructiveButtonTitle:nil otherButtonTitles:@"Abrir web", @"Ver twitter", @"Ver Facebook", nil];
+    AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    UINavigationController* navController = (UINavigationController*)appDelegate.window.rootViewController;
+    UITabBarController* tabController = (UITabBarController*)navController.topViewController;
+    [actionSheet showFromTabBar:tabController.tabBar];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (shareSheet == YES) {
+        NSString* message = [NSString stringWithFormat:@"Restaurante %@. http://www.planogastronomicozaragoza.com/%@/establecimiento/%@",
+                             [self.object nombre],
+                             [self.object objectid],
+                             [[self.object nombre] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        switch (buttonIndex) {
+            case 0:{
+                [self sendTweet:message];
+                break;
+            }
+            case 1:
+                [self sendFacebookPost:message];
+                break;
+            default:
+                break;
+        }
+    } else {
+        switch (buttonIndex) {
+            case 0:
+                [self openURL:[self.object web]];
+                break;
+            case 1:
+                [self openURL:[self.object url_twitter]];
+                break;
+            case 2:
+                [self openURL:[self.object url_facebook]];
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+- (void)openURL:(NSString*)urlString {
+    if ([[[urlString substringToIndex:4] lowercaseString] isEqualToString:@"http"] == NO) {
+        urlString = [@"http://" stringByAppendingString:urlString];
+    }
+    NSURL* url = [NSURL URLWithString:urlString];
+    if ([[UIApplication sharedApplication] canOpenURL:url] == YES)
+        [[UIApplication sharedApplication] openURL:url];
 }
 
 #pragma mark Map View delegate
@@ -128,10 +208,8 @@
 - (void)showGallery:(NSString*)resourceName {
     // Create array of `MWPhoto` objects
     self.photos = [NSMutableArray array];
-    NSArray* files = @[@"http://livedesignonline.com/site-files/livedesignonline.com/files/archive/blog.livedesignonline.com/briefingroom/wp-content/uploads/2010/05/restaurant-t-buenos-aires.jpg",@"http://cdn5.business-opportunities.biz/wp-content/uploads/2013/01/restaurant.jpg"];
-    
-    for (NSString* path in files) {
-        [self.photos addObject:[MWPhoto photoWithURL:[NSURL URLWithString:path]]];
+    for (NSDictionary* object in downloadedImageList) {
+        [self.photos addObject:[MWPhoto photoWithURL:[NSURL URLWithString:object[@"url_imagen"]]]];
     }
     
     // Create & present browser
@@ -152,6 +230,105 @@
     if (index < self.photos.count)
         return [self.photos objectAtIndex:index];
     return nil;
+}
+
+#pragma mark - Image list download
+
+- (void)activateViewMoreButton {
+    [self.viewMoreButton setHidden:NO];
+}
+
+- (void)downloadImageList {
+    [self.viewMoreButton setHidden:YES];
+    [self performSelectorInBackground:@selector(downloadImageListBack)
+                           withObject:nil];
+}
+
+- (void)downloadImageListBack {
+    NSString* objectid = [self.object objectid];
+    NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:
+                                                          [ServerURL imageListURL:objectid]]];
+    operation =
+    [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+                                                    success:
+     ^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+//         [{
+//             "created_at":"String content",
+//             "estado":"String content",
+//             "modified_at":"String content",
+//             "objectid":"String content",
+//             "url_imagen":"String content"
+//         }]
+         downloadedImageList = JSON;
+         if ([downloadedImageList count] > 0) {
+             [self performSelectorOnMainThread:@selector(activateViewMoreButton)
+                                    withObject:nil
+                                 waitUntilDone:NO];
+         }
+     }
+                                                    failure:
+     ^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+         NSLog(@"Error downloading image list data: %@", [error localizedDescription]);
+     }];
+    
+    [operation start];
+}
+
+#pragma mark - Share
+
+-(void)sendTweet:(NSString*)message {
+    // Set up the built-in twitter composition view controller.
+    TWTweetComposeViewController *tweetViewController = [[TWTweetComposeViewController alloc] init];
+    
+    // Set the initial tweet text. See the framework for additional properties that can be set.
+    [tweetViewController setInitialText:message];
+    
+    // Create the completion handler block.
+    [tweetViewController setCompletionHandler:^(TWTweetComposeViewControllerResult result) {
+        
+        switch (result) {
+            case TWTweetComposeViewControllerResultCancelled:
+                // The cancel button was tapped.
+                break;
+            case TWTweetComposeViewControllerResultDone:
+                // The tweet was sent.
+                break;
+            default:
+                break;
+        }
+        // Dismiss the tweet composition view controller.
+        [self dismissModalViewControllerAnimated:YES];
+    }];
+    
+    // Present the tweet composition view controller modally.
+    [self presentModalViewController:tweetViewController animated:YES];
+    
+}
+
+- (void)sendFacebookPost:(NSString*)message {
+    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+        
+        SLComposeViewController *controller = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        
+        SLComposeViewControllerCompletionHandler myBlock = ^(SLComposeViewControllerResult result){
+            if (result == SLComposeViewControllerResultCancelled) {
+                NSLog(@"Cancelled");
+            } else
+            {
+                NSLog(@"Done");
+            }
+            [controller dismissViewControllerAnimated:YES completion:Nil];
+        };
+        controller.completionHandler = myBlock;
+        
+        [controller setInitialText:message];
+        
+        [self presentViewController:controller animated:YES completion:Nil];
+    }
+    else {
+        NSLog(@"UnAvailable");
+    }
+    
 }
 
 @end
