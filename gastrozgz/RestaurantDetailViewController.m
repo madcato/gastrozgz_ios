@@ -16,6 +16,7 @@
     AFJSONRequestOperation* operation;
     NSArray* downloadedImageList;
     BOOL shareSheet;
+    NSMutableArray* urlArray;
 }
 
 @property (nonatomic, strong) NSMutableArray* photos;
@@ -124,7 +125,33 @@
 
 - (void)showInfoSheet {
     shareSheet = NO;
-    UIActionSheet* actionSheet = [[UIActionSheet alloc] initWithTitle:@"Información" delegate:self cancelButtonTitle:@"Ok" destructiveButtonTitle:nil otherButtonTitles:@"Abrir web", @"Ver twitter", @"Ver Facebook", nil];
+    UIActionSheet* actionSheet = [[UIActionSheet alloc] initWithTitle:@"Información" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+
+    urlArray = [NSMutableArray array];
+    
+    if ([self canOpenURL:[self.object web]]) {
+        [actionSheet addButtonWithTitle:@"Abrir web"];
+        [urlArray addObject:[self.object web]];
+    }
+
+    if ([self canOpenURL:[self.object url_twitter]]) {
+        [actionSheet addButtonWithTitle:@"Ver twitter"];
+        [urlArray addObject:[self.object url_twitter]];
+    }
+
+    if ([self canOpenURL:[self.object url_facebook]]) {
+        [actionSheet addButtonWithTitle:@"Ver Facebook"];
+        [urlArray addObject:[self.object url_facebook]];
+    }
+    
+    NSString* phone = [NSString stringWithFormat:@"tel:%@",[self.object telefono]];
+    [actionSheet addButtonWithTitle:[self.object telefono]];
+    [urlArray addObject:phone];
+
+    [actionSheet addButtonWithTitle:@"Cerrar"];
+    [urlArray addObject:@""];
+    
+
     AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
     UINavigationController* navController = (UINavigationController*)appDelegate.window.rootViewController;
@@ -134,7 +161,7 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (shareSheet == YES) {
-        NSString* message = [NSString stringWithFormat:@"Restaurante %@. http://www.planogastronomicozaragoza.com/%@/establecimiento/%@",
+        NSString* message = [NSString stringWithFormat:@"Descubre %@ en http://www.planogastronomicozaragoza.com/%@/establecimiento/%@",
                              [self.object nombre],
                              [self.object objectid],
                              [[self.object nombre] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -150,31 +177,33 @@
                 break;
         }
     } else {
-        switch (buttonIndex) {
-            case 0:
-                [self openURL:[self.object web]];
-                break;
-            case 1:
-                [self openURL:[self.object url_twitter]];
-                break;
-            case 2:
-                [self openURL:[self.object url_facebook]];
-                break;
-            default:
-                break;
-        }
+        [self openURL:urlArray[buttonIndex]];
     }
 }
 
 - (void)openURL:(NSString*)urlString {
-    if ([[[urlString substringToIndex:4] lowercaseString] isEqualToString:@"http"] == NO) {
-        urlString = [@"http://" stringByAppendingString:urlString];
-    }
-    NSURL* url = [NSURL URLWithString:urlString];
+    NSString* formated = [self formatUrl:urlString];
+    NSURL* url = [NSURL URLWithString:formated];
     if ([[UIApplication sharedApplication] canOpenURL:url] == YES)
         [[UIApplication sharedApplication] openURL:url];
 }
 
+- (BOOL)canOpenURL:(NSString*)urlString {
+    NSString* formated = [self formatUrl:urlString];
+    NSURL* url = [NSURL URLWithString:formated];
+    return [[UIApplication sharedApplication] canOpenURL:url];
+}
+
+- (NSString*)formatUrl:(NSString*)urlString {
+    if (([urlString length] > 4) && ([[[urlString substringToIndex:4] lowercaseString] isEqualToString:@"tel:"] == YES)) {
+        return urlString;
+    }
+
+    if (([urlString length] > 4) && ([[[urlString substringToIndex:4] lowercaseString] isEqualToString:@"http"] == NO)) {
+        urlString = [@"http://" stringByAppendingString:urlString];
+    }
+    return urlString;
+}
 #pragma mark Map View delegate
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView

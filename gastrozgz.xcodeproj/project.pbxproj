@@ -631,7 +631,7 @@
 				INFOPLIST_FILE = "gastrozgz/gastrozgz-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9AC48F53-6B12-460E-8F2F-D696AEF33981";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AED1C9CC-7093-4DA1-8A45-F9EC64DB4C9B";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
