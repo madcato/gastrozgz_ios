@@ -297,8 +297,8 @@
 - (NSFetchedResultsController *)newFetchedResultsControllerWithSearch:(NSString *)searchString {
     NSManagedObjectContext* managedObjectContext= [[OSDatabase defaultDatabase]
                                                    managedObjectContext];
-    NSArray *sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"created_at"
-                                                               ascending:NO]]; // your sort descriptors here
+    NSArray *sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"nombre"
+                                                               ascending:YES]]; // your sort descriptors here
     NSPredicate *filterPredicate = [NSPredicate predicateWithFormat:
                                     @"ANY categorias.selected == YES"];
     

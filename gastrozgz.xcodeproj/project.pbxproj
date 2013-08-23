@@ -40,6 +40,9 @@
 		0B02C7E21779F871004F6C4C /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B02C7E11779F871004F6C4C /* ContactViewController.m */; };
 		0B4EFD6B177A007600B6B92B /* iTunesArtwork512 in Resources */ = {isa = PBXBuildFile; fileRef = 0B4EFD69177A007600B6B92B /* iTunesArtwork512 */; };
 		0B4EFD6C177A007600B6B92B /* iTunesArtwork1024 in Resources */ = {isa = PBXBuildFile; fileRef = 0B4EFD6A177A007600B6B92B /* iTunesArtwork1024 */; };
+		0B519A5C17BDB39000BE0CD4 /* instagram.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B519A5B17BDB39000BE0CD4 /* instagram.png */; };
+		0B519A5E17BDB39C00BE0CD4 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B519A5D17BDB39C00BE0CD4 /* facebook.png */; };
+		0B519A6017BDB3A200BE0CD4 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B519A5F17BDB3A200BE0CD4 /* twitter.png */; };
 		0B5D224717B3F55500820BC0 /* ServerURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D224617B3F55500820BC0 /* ServerURL.m */; };
 		0B5D224C17B3FC5000820BC0 /* GZHTTPAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D224B17B3FC5000820BC0 /* GZHTTPAPIClient.m */; };
 		0B5D224F17B3FD9000820BC0 /* Banner.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D224E17B3FD9000820BC0 /* Banner.m */; };
@@ -115,6 +118,9 @@
 		0B02C7E11779F871004F6C4C /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
 		0B4EFD69177A007600B6B92B /* iTunesArtwork512 */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork512; path = "graphic resources/icons/iTunesArtwork512"; sourceTree = "<group>"; };
 		0B4EFD6A177A007600B6B92B /* iTunesArtwork1024 */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork1024; path = "graphic resources/icons/iTunesArtwork1024"; sourceTree = "<group>"; };
+		0B519A5B17BDB39000BE0CD4 /* instagram.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instagram.png; sourceTree = "<group>"; };
+		0B519A5D17BDB39C00BE0CD4 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
+		0B519A5F17BDB3A200BE0CD4 /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
 		0B5D224517B3F55500820BC0 /* ServerURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerURL.h; sourceTree = "<group>"; };
 		0B5D224617B3F55500820BC0 /* ServerURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerURL.m; sourceTree = "<group>"; };
 		0B5D224A17B3FC5000820BC0 /* GZHTTPAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZHTTPAPIClient.h; sourceTree = "<group>"; };
@@ -340,6 +346,9 @@
 		0BAFB9C11792D21C003F0419 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				0B519A5D17BDB39C00BE0CD4 /* facebook.png */,
+				0B519A5F17BDB3A200BE0CD4 /* twitter.png */,
+				0B519A5B17BDB39000BE0CD4 /* instagram.png */,
 				0BA48E6D17BAD75900F508D4 /* list_button.png */,
 				0BAFB9D217933D99003F0419 /* purple_button.png */,
 				0BAFB9CE179310EE003F0419 /* cellaccessory.png */,
@@ -470,6 +479,9 @@
 				0BAFB9D11793130D003F0419 /* nav_background.png in Resources */,
 				0BAFB9D317933D99003F0419 /* purple_button.png in Resources */,
 				0BA48E6E17BAD75900F508D4 /* list_button.png in Resources */,
+				0B519A5C17BDB39000BE0CD4 /* instagram.png in Resources */,
+				0B519A5E17BDB39C00BE0CD4 /* facebook.png in Resources */,
+				0B519A6017BDB3A200BE0CD4 /* twitter.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -631,7 +643,7 @@
 				INFOPLIST_FILE = "gastrozgz/gastrozgz-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AED1C9CC-7093-4DA1-8A45-F9EC64DB4C9B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8CB35B78-EE7C-482D-9220-876171D4B71F";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

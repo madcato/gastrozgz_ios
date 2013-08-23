@@ -98,16 +98,30 @@
     [super viewDidUnload];
 }
 - (IBAction)formButtonPressed:(id)sender {
-    NSURL* url = [NSURL URLWithString:@"http://www.planogastronomicozaragoza.com/contacto.aspx"];
+    [self openUrl:@"http://www.planogastronomicozaragoza.com/contacto.aspx"];
+}
+
+- (IBAction)callButtonPressed:(id)sender {
+    [self openUrl:@"tel:615872550"];
+}
+
+- (IBAction)facbookPressed:(id)sender {
+    [self openUrl:@"https://www.facebook.com/gastronomiazaragoza?fref=ts"];
+}
+
+- (IBAction)instagramPressed:(id)sender {
+    [self openUrl:@"http://instagram.com/gastronomia_zgz"];
+}
+
+- (IBAction)twitterPressed:(id)sender {
+    [self openUrl:@"https://twitter.com/gastronomicoZGZ"];
+}
+
+- (void)openUrl:(NSString*)urlString {
+    NSURL* url = [NSURL URLWithString:urlString];
     if ([[UIApplication sharedApplication] canOpenURL:url] == YES) {
         [[UIApplication sharedApplication] openURL:url];
     }
 }
 
-- (IBAction)callButtonPressed:(id)sender {
-    NSURL* url = [NSURL URLWithString:@"tel:615872550"];
-    if ([[UIApplication sharedApplication] canOpenURL:url] == YES) {
-        [[UIApplication sharedApplication] openURL:url];
-    }
-}
 @end

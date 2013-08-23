@@ -16,4 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 - (IBAction)formButtonPressed:(id)sender;
 - (IBAction)callButtonPressed:(id)sender;
+- (IBAction)facbookPressed:(id)sender;
+- (IBAction)instagramPressed:(id)sender;
+- (IBAction)twitterPressed:(id)sender;
 @end
