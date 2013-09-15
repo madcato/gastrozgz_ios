@@ -40,6 +40,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = NSLocalizedString(@"Contacto", @"");
+    
     [self.data loadHTMLString:
      [self prepareDescription] baseURL:nil];
     [[self.data scrollView] setScrollEnabled:NO];
@@ -50,6 +53,8 @@
     [self.callButton setBackgroundImage:image forState:UIControlStateNormal];
     [self.formButton setBackgroundImage:image forState:UIControlStateNormal];
     
+    [self.callButton setTitle:NSLocalizedString(@"Llamar (615 872 550)", @"") forState:UIControlStateNormal];
+    [self.formButton setTitle:NSLocalizedString(@"Formulario", @"") forState:UIControlStateNormal];
     
     float lat = 41.663257;
     float lng = -0.90103177;

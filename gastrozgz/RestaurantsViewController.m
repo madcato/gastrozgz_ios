@@ -42,7 +42,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
+    self.title = NSLocalizedString(@"Establecimientos", @"");
+    self.searchDisplayController.searchBar.placeholder =
+        NSLocalizedString(@"buscar establecimiento", @"");
     // restore search settings if they were saved in didReceiveMemoryWarning.
     if (self.savedSearchTerm)
     {

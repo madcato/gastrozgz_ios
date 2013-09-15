@@ -31,6 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = NSLocalizedString(@"Ofertas", @"");
 	// Do any additional setup after loading the view.
     banners = [[OSDatabase defaultDatabase] getResultsFrom:@"Banner"
                                                  sortArray:@[@"created_at"]

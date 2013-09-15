@@ -1,0 +1,52 @@
+/* 
+
+  Localizable.strings
+  gastrozgz
+
+  Created by Daniel Vela on 9/15/13.
+  Copyright (c) 2013 Daniel Vela. All rights reserved.
+*/
+
+"Ofertas" = "Ofertas";
+
+"Mapa" = "Mapa";
+
+"Restaurantes" = "Restaurantes";
+
+"Contacto" = "Contacto";
+
+"Establecimientos" = "Establecimientos";
+
+"Detalle" = "Detalle";
+
+"Restaurante" = "Restaurante";
+
+"buscar establecimiento" = "buscar establecimiento";
+
+"Formulario" = "Formulario";
+
+"Llamar (615 872 550)" = "Llamar (615 872 550)";
+
+"más imágenes" = "más imágenes";
+
+"más datos" = "más datos";
+
+"Para ver la información, aumente el nivel de zoom." = "Para ver la información, aumente el nivel de zoom.";
+
+"Información" = "Información";
+
+"Abrir web" = "Abrir web";
+
+"Ver twitter" = "Ver twitter";
+
+"Ver Facebook" = "Ver Facebook";
+
+"Cerrar" = "Cerrar";
+
+"Compartir" = "Compartir";
+
+"Cancelar" = "Cancelar";
+
+"Compartir por Twitter" = "Compartir por Twitter";
+
+"Compartir por Facebook" = "Compartir por Facebook";

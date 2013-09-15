@@ -30,6 +30,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title = NSLocalizedString(@"Mapa", @"");
+    
     MKUserTrackingBarButtonItem* button = [[MKUserTrackingBarButtonItem alloc]
                                            initWithMapView:self.mapView];
     
@@ -129,7 +132,7 @@ calloutAccessoryControlTapped:(UIControl *)control {
 		label.textAlignment = UITextAlignmentCenter;
 		label.numberOfLines = 2;
 		label.font = [UIFont boldSystemFontOfSize:17];
-		label.text = @"Para ver la información, aumente el nivel de zoom.";
+		label.text = NSLocalizedString(@"Para ver la información, aumente el nivel de zoom.", @"");
 		label.textColor = [UIColor whiteColor];
 		label.backgroundColor = [UIColor clearColor];
 		[self.loadingView addSubview:label];

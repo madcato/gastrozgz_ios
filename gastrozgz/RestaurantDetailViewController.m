@@ -44,6 +44,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = NSLocalizedString(@"Detalle", @"");
+    
 	self.titleLabel.text = self.object.nombre;
     [self.imageLabel setImageWithURL:[NSURL URLWithString:self.object.url_foto]
                     placeholderImage:[UIImage imageNamed:@"copa_placeholder"]];
@@ -73,6 +76,10 @@
     image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 20)];
     [self.viewMoreButton setBackgroundImage:image forState:UIControlStateNormal];
     [self.moreDataButton setBackgroundImage:image forState:UIControlStateNormal];
+    
+    [self.viewMoreButton setTitle:NSLocalizedString(@"más imágenes", @"") forState:UIControlStateNormal];
+    [self.moreDataButton setTitle:NSLocalizedString(@"más datos", @"") forState:UIControlStateNormal];
+
     
     [self downloadImageList];
 }
@@ -114,7 +121,7 @@
 
 - (void)showShareSheet {
     shareSheet = YES;
-    UIActionSheet* actionSheet = [[UIActionSheet alloc] initWithTitle:@"Compartir" delegate:self cancelButtonTitle:@"Cancelar" destructiveButtonTitle:nil otherButtonTitles:@"Compartir por Twitter", @"Compartir por Facebook", nil];
+    UIActionSheet* actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Compartir", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancelar", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Compartir por Twitter", @""), NSLocalizedString(@"Compartir por Facebook", @""), nil];
     AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
     UINavigationController* navController = (UINavigationController*)appDelegate.window.rootViewController;
@@ -125,22 +132,22 @@
 
 - (void)showInfoSheet {
     shareSheet = NO;
-    UIActionSheet* actionSheet = [[UIActionSheet alloc] initWithTitle:@"Información" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+    UIActionSheet* actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Información", @"") delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
 
     urlArray = [NSMutableArray array];
     
     if ([self canOpenURL:[self.object web]]) {
-        [actionSheet addButtonWithTitle:@"Abrir web"];
+        [actionSheet addButtonWithTitle:NSLocalizedString(@"Abrir web", @"")];
         [urlArray addObject:[self.object web]];
     }
 
     if ([self canOpenURL:[self.object url_twitter]]) {
-        [actionSheet addButtonWithTitle:@"Ver twitter"];
+        [actionSheet addButtonWithTitle:NSLocalizedString(@"Ver twitter", @"")];
         [urlArray addObject:[self.object url_twitter]];
     }
 
     if ([self canOpenURL:[self.object url_facebook]]) {
-        [actionSheet addButtonWithTitle:@"Ver Facebook"];
+        [actionSheet addButtonWithTitle:NSLocalizedString(@"Ver Facebook", @"")];
         [urlArray addObject:[self.object url_facebook]];
     }
     
@@ -148,7 +155,7 @@
     [actionSheet addButtonWithTitle:[self.object telefono]];
     [urlArray addObject:phone];
 
-    [actionSheet addButtonWithTitle:@"Cerrar"];
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"Cerrar", @"")];
     [urlArray addObject:@""];
     
 

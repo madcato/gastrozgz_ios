@@ -43,6 +43,7 @@
 		0B17465617E523BA00607994 /* icon120.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B17465517E523BA00607994 /* icon120.png */; };
 		0B17465917E5241300607994 /* icon58.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B17465717E5241300607994 /* icon58.png */; };
 		0B17465A17E5241300607994 /* icon80.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B17465817E5241300607994 /* icon80.png */; };
+		0B17465E17E53EA200607994 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B17466017E53EA200607994 /* Localizable.strings */; };
 		0B4EFD6B177A007600B6B92B /* iTunesArtwork512 in Resources */ = {isa = PBXBuildFile; fileRef = 0B4EFD69177A007600B6B92B /* iTunesArtwork512 */; };
 		0B4EFD6C177A007600B6B92B /* iTunesArtwork1024 in Resources */ = {isa = PBXBuildFile; fileRef = 0B4EFD6A177A007600B6B92B /* iTunesArtwork1024 */; };
 		0B519A5C17BDB39000BE0CD4 /* instagram.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B519A5B17BDB39000BE0CD4 /* instagram.png */; };
@@ -126,6 +127,9 @@
 		0B17465517E523BA00607994 /* icon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon120.png; sourceTree = "<group>"; };
 		0B17465717E5241300607994 /* icon58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon58.png; sourceTree = "<group>"; };
 		0B17465817E5241300607994 /* icon80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon80.png; sourceTree = "<group>"; };
+		0B17465F17E53EA200607994 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0B17466117E53EC900607994 /* es */ = {isa = PBXFileReference; lastKnownFileType = file; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0B17466217E53EC900607994 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B4EFD69177A007600B6B92B /* iTunesArtwork512 */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork512; path = "graphic resources/icons/iTunesArtwork512"; sourceTree = "<group>"; };
 		0B4EFD6A177A007600B6B92B /* iTunesArtwork1024 */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork1024; path = "graphic resources/icons/iTunesArtwork1024"; sourceTree = "<group>"; };
 		0B519A5B17BDB39000BE0CD4 /* instagram.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instagram.png; sourceTree = "<group>"; };
@@ -276,6 +280,7 @@
 		0B02C7C31779F77D004F6C4C /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				0B17465B17E53E1D00607994 /* texts */,
 				0BAFB9C11792D21C003F0419 /* images */,
 				0BF06D5B1784BA370078265C /* splash.jpg */,
 				0B02C7B01779F08E004F6C4C /* gastrozgz.storyboard */,
@@ -332,6 +337,14 @@
 				0B02C7E11779F871004F6C4C /* ContactViewController.m */,
 			);
 			name = tabcontrollers;
+			sourceTree = "<group>";
+		};
+		0B17465B17E53E1D00607994 /* texts */ = {
+			isa = PBXGroup;
+			children = (
+				0B17466017E53EA200607994 /* Localizable.strings */,
+			);
+			name = texts;
 			sourceTree = "<group>";
 		};
 		0B5D224117B3F47800820BC0 /* banners */ = {
@@ -452,6 +465,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				es,
 			);
 			mainGroup = 0B02C7821779F06E004F6C4C;
 			productRefGroup = 0B02C78C1779F06E004F6C4C /* Products */;
@@ -478,6 +492,7 @@
 				0B02C7B81779F1C9004F6C4C /* Icon-Small.png in Resources */,
 				0B02C7B91779F1C9004F6C4C /* Icon-Small@2x.png in Resources */,
 				0B17465917E5241300607994 /* icon58.png in Resources */,
+				0B17465E17E53EA200607994 /* Localizable.strings in Resources */,
 				0B02C7CD1779F792004F6C4C /* 48-fork-and-knife.png in Resources */,
 				0B02C7CE1779F792004F6C4C /* 48-fork-and-knife@2x.png in Resources */,
 				0B02C7CF1779F792004F6C4C /* 53-house.png in Resources */,
@@ -577,8 +592,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				0B02C79A1779F06E004F6C4C /* en */,
+				0B17466217E53EC900607994 /* es */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		0B17466017E53EA200607994 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0B17465F17E53EA200607994 /* en */,
+				0B17466117E53EC900607994 /* es */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
