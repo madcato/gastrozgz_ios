@@ -13,6 +13,8 @@
 #import "RestaurantDetailViewController.h"
 #import "Establecimientos.h"
 #import "OSDatabase.h"
+#import "AppDelegate.h"
+
 
 @interface RestaurantsViewController () {
 }
@@ -56,11 +58,11 @@
         self.savedSearchTerm = nil;
     }
 
-    [self.searchDisplayController.searchResultsTableView registerClass:
+/*    [self.searchDisplayController.searchResultsTableView registerClass:
                                                         [RestaurantCell class]
                                                 forCellReuseIdentifier:
                                                             @"RestaurantCell"];
-
+*/
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -117,8 +119,9 @@
 - (UITableViewCell *)tableView:(UITableView *)theTableView
          cellForRowAtIndexPath:(NSIndexPath *)theIndexPath {
     RestaurantCell *cell = (RestaurantCell*)[self.tableView dequeueReusableCellWithIdentifier:@"RestaurantCell"];
-    if (cell == nil) {
+    if ((cell == nil) || ([cell isKindOfClass:[RestaurantCell class]] == NO)) {
         cell = [[RestaurantCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RestaurantCell"];
+        [cell prepareForReuse];
     }
     
     [self fetchedResultsController:[self fetchedResultsControllerForTableView:theTableView] configureCell:cell atIndexPath:theIndexPath];

@@ -16,7 +16,6 @@
 #import "Establecimientos.h"
 #import "CatEst.h"
 
-#define IOS_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
 
 @interface AppDelegate ()
 
