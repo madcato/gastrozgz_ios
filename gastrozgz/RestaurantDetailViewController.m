@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 
 @interface RestaurantDetailViewController () {
+    MWPhotoBrowser *browser;
     AFJSONRequestOperation* operation;
     NSArray* downloadedImageList;
     BOOL shareSheet;
@@ -249,7 +250,7 @@
     }
     
     // Create & present browser
-    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
     // Set options
     browser.wantsFullScreenLayout = YES; // Decide if you want the photo browser full screen, i.e. whether the status bar is affected (defaults to YES)
     browser.displayActionButton = YES; // Show action button to save, copy or email photos (defaults to NO)
