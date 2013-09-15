@@ -146,7 +146,7 @@
         UITableViewCell* cell = (UITableViewCell*)sender;
         RestaurantDetailViewController* controller =
         (RestaurantDetailViewController*)segue.destinationViewController;
-        UITableView* tempTable = (UITableView*)cell.superview;
+        UITableView* tempTable = self.tableView;
         NSIndexPath* index = [tempTable indexPathForCell:cell];
         Establecimientos* establecimiento =
         [[self fetchedResultsControllerForTableView:tempTable]

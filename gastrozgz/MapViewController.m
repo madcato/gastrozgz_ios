@@ -32,6 +32,7 @@
     [super viewDidLoad];
     MKUserTrackingBarButtonItem* button = [[MKUserTrackingBarButtonItem alloc]
                                            initWithMapView:self.mapView];
+    
     self.navigationItem.rightBarButtonItem = button;
     [self pressUserTrackingButton];
 
@@ -81,7 +82,7 @@
     MKAnnotationView* view = [[MKAnnotationView alloc]
                               initWithAnnotation:annotation
                                  reuseIdentifier:@"restaurantID"];
-    view.image = [UIImage imageNamed:@"copa"];
+    view.image = [UIImage imageNamed:@"copa2"];
     view.centerOffset = CGPointMake(0, -15);
     view.canShowCallout = YES;
     view.rightCalloutAccessoryView = [UIButton buttonWithType:

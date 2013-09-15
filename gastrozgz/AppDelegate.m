@@ -16,6 +16,8 @@
 #import "Establecimientos.h"
 #import "CatEst.h"
 
+#define IOS_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+
 @interface AppDelegate ()
 
 @property (nonatomic, strong) AFHTTPClient* httpClient;
@@ -103,7 +105,10 @@
 - (void)customizeAppearance {
     [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
     [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTintColor:[UIColor purpleColor]];
-
+    if (IOS_VERSION_EQUAL_TO(@"7.0")) {
+        [[UINavigationBar appearance] setTintColor:[UIColor purpleColor]];
+    }
+    
     [[UINavigationBar appearance] setTitleTextAttributes:
                          @{UITextAttributeTextColor:[UIColor whiteColor],
                           UITextAttributeTextShadowColor:[UIColor darkGrayColor],
@@ -112,6 +117,9 @@
     
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor purpleColor]];
     [[UITabBar appearance] setTintColor:[UIColor blackColor]];
+    if (IOS_VERSION_EQUAL_TO(@"7.0")) {
+        [[UITabBar appearance] setTintColor:[UIColor purpleColor]];
+    }
     
     UIImage* background = [[UIImage imageNamed:@"nav_background"] resizableImageWithCapInsets:UIEdgeInsetsMake(0,1,0,1)];
     [[UINavigationBar appearance] setBackgroundImage:background forBarMetrics:UIBarMetricsDefault];

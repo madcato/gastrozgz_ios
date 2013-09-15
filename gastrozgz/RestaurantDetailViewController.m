@@ -214,7 +214,7 @@
     MKAnnotationView* view = [[MKAnnotationView alloc]
                               initWithAnnotation:annotation
                               reuseIdentifier:@"restaurantID"];
-    view.image = [UIImage imageNamed:@"copa"];
+    view.image = [UIImage imageNamed:@"copa2"];
     view.centerOffset = CGPointMake(0, -15);
     view.canShowCallout = YES;
     return view;
@@ -326,11 +326,11 @@
                 break;
         }
         // Dismiss the tweet composition view controller.
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }];
     
     // Present the tweet composition view controller modally.
-    [self presentModalViewController:tweetViewController animated:YES];
+    [self presentViewController:tweetViewController animated:YES completion:nil];
     
 }
 
