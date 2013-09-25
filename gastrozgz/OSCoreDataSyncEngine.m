@@ -188,7 +188,7 @@ NSString * const kOSCoreDataSyncEngineSyncCompletedNotificationName = @"OSCoreDa
     __block NSArray *results = nil;
     NSManagedObjectContext *managedObjectContext = [[OSDatabase backgroundDatabase] managedObjectContext];
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:className];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"estado = %@", @"D"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"estado = %@", @"B"];
     [fetchRequest setPredicate:predicate];
     [managedObjectContext performBlockAndWait:^{
         NSError *error = nil;
@@ -374,7 +374,7 @@ NSString * const kOSCoreDataSyncEngineSyncCompletedNotificationName = @"OSCoreDa
     for (NSString *className in self.registeredClassesToSync) {
         if ([className isEqualToString:@"CatEst"] == NO) {
             //
-            // Remove all objects with estado property set to 'D'
+            // Remove all objects with estado property set to 'B'
             //
             NSArray *storedRecords = [self
                                       managedObjectsToDeleteForClass:className];
@@ -402,9 +402,10 @@ NSString * const kOSCoreDataSyncEngineSyncCompletedNotificationName = @"OSCoreDa
                 Categorias* categoria = (Categorias*)
                 [self managedObjectForClass:@"Categorias"
                                withObjectId:catEst.codigo_categoria];
-                
-                [establecimiento addCategoriasObject:categoria];
-                [categoria addEstablecimientosObject:establecimiento];
+                if ((categoria != nil) && (establecimiento != nil)) {
+                    [establecimiento addCategoriasObject:categoria];
+                    [categoria addEstablecimientosObject:establecimiento];
+                }
             }
             // Delete CatEst table
             [managedObjectContext performBlockAndWait:^{
