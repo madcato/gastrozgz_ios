@@ -149,17 +149,24 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"RestaurantDetail"]) {
+        UITableView *tableView = ((UITableViewController*)segue.sourceViewController).tableView;
+
         UITableViewCell* cell = (UITableViewCell*)sender;
         RestaurantDetailViewController* controller =
         (RestaurantDetailViewController*)segue.destinationViewController;
-        UITableView* tempTable = self.tableView;
-        NSIndexPath* index = [tempTable indexPathForCell:cell];
+        UITableView* tempTable = tableView;
+        NSIndexPath* index = [self.tableView indexPathForCell:cell];
+        if (index == nil) {
+            index = [self.searchDisplayController.searchResultsTableView indexPathForCell:cell];
+            tempTable = self.searchDisplayController.searchResultsTableView;
+        }
         Establecimientos* establecimiento =
         [[self fetchedResultsControllerForTableView:tempTable]
          objectAtIndexPath:index];
         controller.object = establecimiento;
     }
 }
+
 
 #pragma mark - Table view delegate
 
