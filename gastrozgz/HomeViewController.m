@@ -58,6 +58,23 @@
     [self addChildViewController:self.pageController];
     [[self view] addSubview:[self.pageController view]];
     [self.pageController didMoveToParentViewController:self];
+    
+    
+    [self setTabNames];
+}
+
+- (void)setTabNames {
+    UITabBarController* tabController = self.parentViewController.parentViewController;
+    UITabBar* tabBar = tabController.tabBar;
+    
+    UITabBarItem* item = tabBar.items[0];
+    [item setTitle:NSLocalizedString(@"Ofertas", @"")];
+    item = tabBar.items[1];
+    [item setTitle:NSLocalizedString(@"Mapa", @"")];
+    item = tabBar.items[2];
+    [item setTitle:NSLocalizedString(@"Establecimientos", @"")];
+    item = tabBar.items[3];
+    [item setTitle:NSLocalizedString(@"Contacto", @"")];
 }
 
 - (void)didReceiveMemoryWarning
