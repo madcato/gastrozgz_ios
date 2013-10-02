@@ -104,7 +104,7 @@
 - (void)customizeAppearance {
     [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
     [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTintColor:[UIColor purpleColor]];
-    if (IOS_VERSION_EQUAL_TO(@"7.0")) {
+    if (IOS_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
         [[UINavigationBar appearance] setTintColor:[UIColor purpleColor]];
     }
     
@@ -116,7 +116,7 @@
     
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor purpleColor]];
     [[UITabBar appearance] setTintColor:[UIColor blackColor]];
-    if (IOS_VERSION_EQUAL_TO(@"7.0")) {
+    if (IOS_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
         [[UITabBar appearance] setTintColor:[UIColor purpleColor]];
     }
     
