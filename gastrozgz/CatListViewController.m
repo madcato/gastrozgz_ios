@@ -63,7 +63,8 @@
         id <NSFetchedResultsSectionInfo> sectionInfo = [sections objectAtIndex:section];
         numberOfRows = [sectionInfo numberOfObjects];
     }
-    return numberOfRows;}
+    return numberOfRows;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
                  configureCell:(UITableViewCell*)cell
@@ -182,8 +183,8 @@
     
     NSManagedObjectContext* managedObjectContext= [[OSDatabase defaultDatabase]
                                                    managedObjectContext];
-    NSArray *sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"created_at"
-                                                               ascending:NO]]; // your sort descriptors here
+    NSArray *sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"categoria"
+                                                               ascending:YES]]; // your sort descriptors here
     /*
      Set up the fetched results controller.
      */

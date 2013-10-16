@@ -76,9 +76,9 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     // save the state of the search UI so that it can be restored if the view is re-created
-    self.searchWasActive = [self.searchDisplayController isActive];
-    self.savedSearchTerm = [self.searchDisplayController.searchBar text];
-    self.savedScopeButtonIndex = [self.searchDisplayController.searchBar selectedScopeButtonIndex];
+//    self.searchWasActive = [self.searchDisplayController isActive];
+//    self.savedSearchTerm = [self.searchDisplayController.searchBar text];
+//    self.savedScopeButtonIndex = [self.searchDisplayController.searchBar selectedScopeButtonIndex];
 }
 
 - (NSFetchedResultsController *)fetchedResultsControllerForTableView:(UITableView *)tableView

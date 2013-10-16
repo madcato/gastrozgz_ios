@@ -72,6 +72,8 @@
 		0BBAF198177A03FE0093F689 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBAF197177A03FE0093F689 /* NSData+Base64.m */; };
 		0BBAF19A177A04820093F689 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BBAF199177A04820093F689 /* MobileCoreServices.framework */; };
 		0BBAF19C177A04880093F689 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BBAF19B177A04880093F689 /* SystemConfiguration.framework */; };
+		0BC05A5418015FEA0053B8A3 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC05A5318015FEA0053B8A3 /* CategoryCell.m */; };
+		0BC05A57180163A40053B8A3 /* CategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC05A56180163A40053B8A3 /* CategoryTableViewController.m */; };
 		0BF06D5C1784BA370078265C /* splash.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0BF06D5B1784BA370078265C /* splash.jpg */; };
 		0BFD071917B5C14C00ED5C95 /* CatEst.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFD071817B5C14C00ED5C95 /* CatEst.m */; };
 		0BFD072217B5C63C00ED5C95 /* Categorias.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFD072117B5C63C00ED5C95 /* Categorias.m */; };
@@ -171,6 +173,10 @@
 		0BBAF197177A03FE0093F689 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		0BBAF199177A04820093F689 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		0BBAF19B177A04880093F689 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		0BC05A5218015FEA0053B8A3 /* CategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
+		0BC05A5318015FEA0053B8A3 /* CategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
+		0BC05A55180163A40053B8A3 /* CategoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryTableViewController.h; sourceTree = "<group>"; };
+		0BC05A56180163A40053B8A3 /* CategoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTableViewController.m; sourceTree = "<group>"; };
 		0BF06D5B1784BA370078265C /* splash.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = splash.jpg; sourceTree = "<group>"; };
 		0BFD071717B5C14C00ED5C95 /* CatEst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatEst.h; sourceTree = "<group>"; };
 		0BFD071817B5C14C00ED5C95 /* CatEst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatEst.m; sourceTree = "<group>"; };
@@ -320,6 +326,10 @@
 				0BAFB9C5179301EF003F0419 /* RestaurantCell.m */,
 				0BA48E6F17BAD8D200F508D4 /* CatListViewController.h */,
 				0BA48E7017BAD8D300F508D4 /* CatListViewController.m */,
+				0BC05A5218015FEA0053B8A3 /* CategoryCell.h */,
+				0BC05A5318015FEA0053B8A3 /* CategoryCell.m */,
+				0BC05A55180163A40053B8A3 /* CategoryTableViewController.h */,
+				0BC05A56180163A40053B8A3 /* CategoryTableViewController.m */,
 			);
 			name = classes;
 			sourceTree = "<group>";
@@ -584,7 +594,9 @@
 				0B5D224C17B3FC5000820BC0 /* GZHTTPAPIClient.m in Sources */,
 				0B5D224F17B3FD9000820BC0 /* Banner.m in Sources */,
 				0BFD071917B5C14C00ED5C95 /* CatEst.m in Sources */,
+				0BC05A5418015FEA0053B8A3 /* CategoryCell.m in Sources */,
 				0BFD072217B5C63C00ED5C95 /* Categorias.m in Sources */,
+				0BC05A57180163A40053B8A3 /* CategoryTableViewController.m in Sources */,
 				0BFD072517B5C63D00ED5C95 /* Establecimientos.m in Sources */,
 				0BA48E7117BAD8D300F508D4 /* CatListViewController.m in Sources */,
 			);
