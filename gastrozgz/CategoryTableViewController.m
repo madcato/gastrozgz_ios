@@ -10,6 +10,7 @@
 #import "OSDatabase.h"
 #import "CategoryCell.h"
 #import "Categorias.h"
+#import "ServerURL.h"
 
 @interface CategoryTableViewController ()
 
@@ -78,6 +79,7 @@
                              objectAtIndexPath:indexPath2];
     [cell.leftButton setTitle:categoria.categoria
                      forState:UIControlStateNormal];
+    [cell.leftImageView setImageWithURL:[NSURL URLWithString:[ServerURL categoryImageURL:[categoria objectid]]]];
     cell.leftButton.tag = index;
     NSFetchedResultsController *fetchController =
     [self fetchedResultsController];
@@ -91,6 +93,7 @@
                                  objectAtIndexPath:indexPath2];
         [cell.rightButton setTitle:categoria.categoria
                          forState:UIControlStateNormal];
+        [cell.rightImageView setImageWithURL:[NSURL URLWithString:[ServerURL categoryImageURL:[categoria objectid]]]];
         cell.rightButton.hidden = NO;
         cell.rightButton.tag = index + 1;
     } else {

@@ -56,4 +56,10 @@
     return url;
 }
 
++ (NSString*)categoryImageURL:(NSString*)ido {
+    NSString* images = [NSString stringWithFormat:CATEGORY_IMAGES_URL,ido];
+    NSString* url = [NSString stringWithFormat:@"%@://%@/%@",PROTOCOL,SERVER2,images];
+    return url;
+}
+
 @end

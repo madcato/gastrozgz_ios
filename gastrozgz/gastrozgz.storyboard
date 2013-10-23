@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="CeD-85-u9F">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="CeD-85-u9F">
     <dependencies>
         <deployment defaultVersion="1280" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
         <!--Initial View Controller-->
@@ -99,10 +99,11 @@
             <objects>
                 <viewController id="QV1-S3-f1C" customClass="HomeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bhh-iD-1XI">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Ofertas" id="tiq-Wb-JlJ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rY4-7M-K4n" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -170,7 +171,7 @@
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </webView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="dXw-FU-x82">
-                                <rect key="frame" x="20" y="213" width="280" height="120.00000000000001"/>
+                                <rect key="frame" x="20" y="212.9999979093671" width="280" height="120"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="G1A-Hd-2bI">
@@ -285,9 +286,8 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <inset key="titleEdgeInsets" minX="-54" minY="74" maxX="0.0" maxY="0.0"/>
-                                            <inset key="imageEdgeInsets" minX="33" minY="-22" maxX="0.0" maxY="0.0"/>
-                                            <state key="normal" title="Todos" image="Icon.png">
+                                            <inset key="titleEdgeInsets" minX="0.0" minY="54" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="Todos">
                                                 <color key="titleColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
@@ -299,21 +299,30 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <inset key="titleEdgeInsets" minX="-54" minY="74" maxX="0.0" maxY="0.0"/>
-                                            <inset key="imageEdgeInsets" minX="33" minY="-22" maxX="0.0" maxY="0.0"/>
-                                            <state key="normal" title="Todos" image="Icon.png">
+                                            <inset key="titleEdgeInsets" minX="0.0" minY="54" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="Todos">
                                                 <color key="titleColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
                                                 <segue destination="dr9-rP-qBs" kind="push" identifier="rightButton" id="455-Kh-uB2"/>
                                             </connections>
                                         </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon.png" id="K8x-gY-HMf">
+                                            <rect key="frame" x="20" y="12" width="130" height="108"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon.png" id="idF-8q-xbp">
+                                            <rect key="frame" x="170" y="12" width="130" height="108"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="leftButton" destination="gZT-kS-eox" id="jAf-4I-z9j"/>
+                                    <outlet property="leftImageView" destination="K8x-gY-HMf" id="8ME-lt-qDt"/>
                                     <outlet property="rightButton" destination="L36-OC-hWf" id="KWt-gH-XJx"/>
+                                    <outlet property="rightImageView" destination="idF-8q-xbp" id="6t7-bz-h4U"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
