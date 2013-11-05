@@ -171,7 +171,7 @@
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </webView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="dXw-FU-x82">
-                                <rect key="frame" x="20" y="212.9999979093671" width="280" height="120"/>
+                                <rect key="frame" x="20" y="212.99999505279655" width="280" height="120"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="G1A-Hd-2bI">
@@ -287,7 +287,7 @@
                                             <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <inset key="titleEdgeInsets" minX="0.0" minY="54" maxX="0.0" maxY="0.0"/>
-                                            <state key="normal" title="Todos">
+                                            <state key="normal">
                                                 <color key="titleColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
@@ -300,7 +300,7 @@
                                             <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <inset key="titleEdgeInsets" minX="0.0" minY="54" maxX="0.0" maxY="0.0"/>
-                                            <state key="normal" title="Todos">
+                                            <state key="normal">
                                                 <color key="titleColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
@@ -315,14 +315,30 @@
                                             <rect key="frame" x="170" y="12" width="130" height="108"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vtW-E4-X6N">
+                                            <rect key="frame" x="26" y="73" width="119" height="39"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KJn-JV-jWi">
+                                            <rect key="frame" x="176" y="73" width="119" height="39"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="leftButton" destination="gZT-kS-eox" id="jAf-4I-z9j"/>
                                     <outlet property="leftImageView" destination="K8x-gY-HMf" id="8ME-lt-qDt"/>
+                                    <outlet property="leftText" destination="vtW-E4-X6N" id="saz-kf-gY1"/>
                                     <outlet property="rightButton" destination="L36-OC-hWf" id="KWt-gH-XJx"/>
                                     <outlet property="rightImageView" destination="idF-8q-xbp" id="6t7-bz-h4U"/>
+                                    <outlet property="rightText" destination="KJn-JV-jWi" id="SgP-42-iqS"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

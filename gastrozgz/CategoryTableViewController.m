@@ -73,29 +73,37 @@
     CategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     NSUInteger index = indexPath.row * 2;
-    NSIndexPath* indexPath2 = [NSIndexPath indexPathForRow:index
-                                                 inSection:indexPath.section];
-    Categorias* categoria = [self.fetchedResultsController
-                             objectAtIndexPath:indexPath2];
-    [cell.leftButton setTitle:categoria.categoria
-                     forState:UIControlStateNormal];
-    [cell.leftImageView setImageWithURL:[NSURL URLWithString:[ServerURL categoryImageURL:[categoria objectid]]]];
-    cell.leftButton.tag = index;
+    if (indexPath.row == 0) {
+        [cell.leftText setText:@"Ver Todo"];
+        cell.leftButton.tag = -1;
+        [cell.leftImageView setImage:[UIImage imageNamed:@"catPlaceholder.png"]];
+    } else {
+        NSIndexPath* indexPath2 = [NSIndexPath indexPathForRow:index
+                                                     inSection:indexPath.section];
+        Categorias* categoria = [self.fetchedResultsController
+                                 objectAtIndexPath:indexPath2];
+        [cell.leftText setText:categoria.categoria];
+        cell.leftButton.tag = index;
+        [cell.leftImageView setImageWithURL:[NSURL URLWithString:[ServerURL categoryImageURL:[categoria objectid]]]
+                           placeholderImage:[UIImage imageNamed:@"catPlaceholder.png"]];
+        index++;
+    }
+    
     NSFetchedResultsController *fetchController =
     [self fetchedResultsController];
     NSArray *sections = fetchController.sections;
     id <NSFetchedResultsSectionInfo> sectionInfo = [sections objectAtIndex:indexPath.section];
     NSInteger numberOfRows = [sectionInfo numberOfObjects];
-    if (numberOfRows > index + 1) {
-        indexPath2 = [NSIndexPath indexPathForRow:index + 1
-                                        inSection:indexPath.section];
-        categoria = [self.fetchedResultsController
+    if (numberOfRows > index) {
+        NSIndexPath* indexPath2 = [NSIndexPath indexPathForRow:index
+                                                     inSection:indexPath.section];
+        Categorias* categoria = [self.fetchedResultsController
                                  objectAtIndexPath:indexPath2];
-        [cell.rightButton setTitle:categoria.categoria
-                         forState:UIControlStateNormal];
-        [cell.rightImageView setImageWithURL:[NSURL URLWithString:[ServerURL categoryImageURL:[categoria objectid]]]];
+        [cell.rightText setText:categoria.categoria];
+        [cell.rightImageView setImageWithURL:[NSURL URLWithString:[ServerURL categoryImageURL:[categoria objectid]]]
+                            placeholderImage:[UIImage imageNamed:@"catPlaceholder.png"]];
         cell.rightButton.hidden = NO;
-        cell.rightButton.tag = index + 1;
+        cell.rightButton.tag = index;
     } else {
         cell.rightButton.hidden = YES;
     }
@@ -212,15 +220,24 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UIButton* button = (UIButton*)sender;
-    NSIndexPath* indexPath = [NSIndexPath indexPathForRow:button.tag
-                                                inSection:0];
-    Categorias* categoria = [self.fetchedResultsController
-                             objectAtIndexPath:indexPath];
     
-    for (Categorias* cat in self.fetchedResultsController.fetchedObjects) {
-        cat.selected = @(NO);
+    NSNumber* selectAll = @(NO);
+    if (button.tag == -1) {
+        selectAll = @(YES);
+        for (Categorias* cat in self.fetchedResultsController.fetchedObjects) {
+            cat.selected = selectAll;
+        }
+    } else {
+        for (Categorias* cat in self.fetchedResultsController.fetchedObjects) {
+            cat.selected = selectAll;
+        }
+        NSIndexPath* indexPath = [NSIndexPath indexPathForRow:button.tag
+                                                    inSection:0];
+        
+        Categorias* categoria = [self.fetchedResultsController
+                                 objectAtIndexPath:indexPath];
+        categoria.selected = @(YES);
     }
-    categoria.selected = @(YES);
     
     [[OSDatabase defaultDatabase] save];
 }
