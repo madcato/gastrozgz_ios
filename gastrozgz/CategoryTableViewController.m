@@ -62,6 +62,7 @@
         id <NSFetchedResultsSectionInfo> sectionInfo = [sections objectAtIndex:section];
         numberOfRows = [sectionInfo numberOfObjects];
     }
+    numberOfRows++;
     float rows = (float)numberOfRows / 2.0f;
     numberOfRows = ceilf(rows);
     return numberOfRows;
@@ -78,6 +79,7 @@
         cell.leftButton.tag = -1;
         [cell.leftImageView setImage:[UIImage imageNamed:@"catPlaceholder.png"]];
     } else {
+        index--;
         NSIndexPath* indexPath2 = [NSIndexPath indexPathForRow:index
                                                      inSection:indexPath.section];
         Categorias* categoria = [self.fetchedResultsController
@@ -104,8 +106,12 @@
                             placeholderImage:[UIImage imageNamed:@"catPlaceholder.png"]];
         cell.rightButton.hidden = NO;
         cell.rightButton.tag = index;
+        cell.rightImageView.hidden = NO;
+        cell.rightText.hidden = NO;
     } else {
         cell.rightButton.hidden = YES;
+        cell.rightImageView.hidden = YES;
+        cell.rightText.hidden = YES;
     }
     return cell;
 }

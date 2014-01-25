@@ -49,6 +49,7 @@
 		0B519A5C17BDB39000BE0CD4 /* instagram.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B519A5B17BDB39000BE0CD4 /* instagram.png */; };
 		0B519A5E17BDB39C00BE0CD4 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B519A5D17BDB39C00BE0CD4 /* facebook.png */; };
 		0B519A6017BDB3A200BE0CD4 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B519A5F17BDB3A200BE0CD4 /* twitter.png */; };
+		0B57D39C185659FB0086C92E /* catPlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B57D39B185659FB0086C92E /* catPlaceholder.png */; };
 		0B5D224717B3F55500820BC0 /* ServerURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D224617B3F55500820BC0 /* ServerURL.m */; };
 		0B5D224C17B3FC5000820BC0 /* GZHTTPAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D224B17B3FC5000820BC0 /* GZHTTPAPIClient.m */; };
 		0B5D224F17B3FD9000820BC0 /* Banner.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D224E17B3FD9000820BC0 /* Banner.m */; };
@@ -137,6 +138,7 @@
 		0B519A5B17BDB39000BE0CD4 /* instagram.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instagram.png; sourceTree = "<group>"; };
 		0B519A5D17BDB39C00BE0CD4 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
 		0B519A5F17BDB3A200BE0CD4 /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
+		0B57D39B185659FB0086C92E /* catPlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = catPlaceholder.png; sourceTree = "<group>"; };
 		0B5D224517B3F55500820BC0 /* ServerURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerURL.h; sourceTree = "<group>"; };
 		0B5D224617B3F55500820BC0 /* ServerURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerURL.m; sourceTree = "<group>"; };
 		0B5D224A17B3FC5000820BC0 /* GZHTTPAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZHTTPAPIClient.h; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 		0B02C7961779F06E004F6C4C /* gastrozgz */ = {
 			isa = PBXGroup;
 			children = (
+				0B57D39B185659FB0086C92E /* catPlaceholder.png */,
 				0BAFB9BF1792CEE9003F0419 /* stations_bizi.plist */,
 				0B02C7D51779F80F004F6C4C /* classes */,
 				0B02C7C31779F77D004F6C4C /* resources */,
@@ -517,6 +520,7 @@
 				0B17465317E5225700607994 /* copa2.png in Resources */,
 				0B02C7D31779F792004F6C4C /* 111-user.png in Resources */,
 				0B17465A17E5241300607994 /* icon80.png in Resources */,
+				0B57D39C185659FB0086C92E /* catPlaceholder.png in Resources */,
 				0B02C7D41779F792004F6C4C /* 111-user@2x.png in Resources */,
 				0B4EFD6B177A007600B6B92B /* iTunesArtwork512 in Resources */,
 				0B4EFD6C177A007600B6B92B /* iTunesArtwork1024 in Resources */,
@@ -687,11 +691,13 @@
 			baseConfigurationReference = DE6D242D91524B19A17FCD03 /* Pods.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "gastrozgz/gastrozgz-Prefix.pch";
 				INFOPLIST_FILE = "gastrozgz/gastrozgz-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -700,14 +706,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DE6D242D91524B19A17FCD03 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Daniel Vela";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Daniel Vela (TW65EXAM4U)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "gastrozgz/gastrozgz-Prefix.pch";
 				INFOPLIST_FILE = "gastrozgz/gastrozgz-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8CB35B78-EE7C-482D-9220-876171D4B71F";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "900C25DA-35E2-4516-91F0-3A34CA0EDFBB";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

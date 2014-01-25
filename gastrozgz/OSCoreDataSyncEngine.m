@@ -393,6 +393,15 @@ NSString * const kOSCoreDataSyncEngineSyncCompletedNotificationName = @"OSCoreDa
                 }
             }];
         } else {
+            //Remove all relations from Categorias and Restaurants
+            NSArray* categorias = [self managedObjectsToDeleteForClass:@"Categorias"];
+            for (Categorias* categoria in categorias) {
+                [categoria removeEstablecimientos:categoria.establecimientos];
+            }
+            NSArray* establecimientos = [self managedObjectsToDeleteForClass:@"Establecimientos"];
+            for (Establecimientos* establecimiento in establecimientos) {
+                [establecimiento removeCategorias:establecimiento.categorias];
+            }
             // Create relations between Categories and Restaurants
             NSArray* catEstArrays = [self catEstArray];
             for (CatEst* catEst in catEstArrays) {

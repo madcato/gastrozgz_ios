@@ -64,7 +64,7 @@
 }
 
 - (void)setTabNames {
-    UITabBarController* tabController = self.parentViewController.parentViewController;
+    UITabBarController* tabController = (UITabBarController*)self.parentViewController.parentViewController;
     UITabBar* tabBar = tabController.tabBar;
     
     UITabBarItem* item = tabBar.items[0];
