@@ -198,6 +198,18 @@ NSString * const kOSCoreDataSyncEngineSyncCompletedNotificationName = @"OSCoreDa
     return results;
 }
 
+- (NSArray *)managedObjectsForClass:(NSString *)className {
+    __block NSArray *results = nil;
+    NSManagedObjectContext *managedObjectContext = [[OSDatabase backgroundDatabase] managedObjectContext];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:className];
+    [managedObjectContext performBlockAndWait:^{
+        NSError *error = nil;
+        results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    }];
+    
+    return results;
+}
+
 - (NSManagedObject *)managedObjectForClass:(NSString *)className withObjectId:(NSString*) objectid{
     __block NSArray *results = nil;
     NSManagedObjectContext *managedObjectContext = [[OSDatabase backgroundDatabase] managedObjectContext];
@@ -394,11 +406,11 @@ NSString * const kOSCoreDataSyncEngineSyncCompletedNotificationName = @"OSCoreDa
             }];
         } else {
             //Remove all relations from Categorias and Restaurants
-            NSArray* categorias = [self managedObjectsToDeleteForClass:@"Categorias"];
+            NSArray* categorias = [self managedObjectsForClass:@"Categorias"];
             for (Categorias* categoria in categorias) {
                 [categoria removeEstablecimientos:categoria.establecimientos];
             }
-            NSArray* establecimientos = [self managedObjectsToDeleteForClass:@"Establecimientos"];
+            NSArray* establecimientos = [self managedObjectsForClass:@"Establecimientos"];
             for (Establecimientos* establecimiento in establecimientos) {
                 [establecimiento removeCategorias:establecimiento.categorias];
             }
